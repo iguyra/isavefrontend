@@ -61,7 +61,7 @@ const Shipping = ({ setOpenPay }) => {
           onClick={(event) => handleOpenPay(event)}
           className="details__next"
         >
-          <a href="#" className="details__next--link" id="shippingproceed">
+          <a href="#proceedpayment" className="details__next--link" id="pay">
             <i class="fas fa-chevron-down"></i>
           </a>
         </div>
