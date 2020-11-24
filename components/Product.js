@@ -18,7 +18,7 @@ export default class Product extends React.Component {
     const { product } = this.state;
 
     return (
-      <section className="product">
+      <section className="product" id="products">
         {/* <h4 className="product__phrase">trending this week</h4> */}
         {/* <div className="product__list"> */}
           {products.map((product) => {

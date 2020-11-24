@@ -8,7 +8,7 @@ export default class Slides extends React.Component {
           <li className="slides__list">
             <img className="slides__img" src="/static/lili.jpg" alt="hero" />
             <p className="slides__text">
-              <a href="" className="slides__text--link">
+              <a href="#products" className="slides__text--link">
                 shop now
               </a>
             </p>
