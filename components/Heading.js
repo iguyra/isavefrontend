@@ -46,11 +46,10 @@ class Heading extends React.Component {
               placeholder="search product"
               id="searchinput"
             />
-            <Link  href="/search" >
-            <a className="searchtest__searchbutton" id="searchbutton">
+           
+            <a  href="/search"className="searchtest__searchbutton" id="searchbutton">
               <i className="fas fa-search"></i>
               </a>
-            </Link>
           </div>
         </div>
 
