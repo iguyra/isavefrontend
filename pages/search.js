@@ -1,4 +1,4 @@
-import SearchArea from "../components/SearchArea"
+import SearchArea from "../components/searchArea"
 
 
 
@@ -6,7 +6,7 @@ import SearchArea from "../components/SearchArea"
 const search = () => {
 
     return (
-<SearchArea/>
+        <SearchArea/>
     )
 }
 
