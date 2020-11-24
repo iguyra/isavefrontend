@@ -77,13 +77,12 @@ const CartItem = ({ product }) => {
             <div className="cartitem__details">
               <p className="cartitem__productname">{product.name}</p>
               <p className="cartitem__size">size: one size fits all</p>
-              <p className="cartitem__price">GH {product.price}</p>
-              <p className="cartitem__price">GH {product.totalPrice}</p>
+              <p className="cartitem__price"><span>price</span>GH {product.price}</p>
+              <p className="cartitem__price"> <span>total price</span> GH {product.totalPrice}</p>
             </div>
           </div>
           <div className="cartitem__bottom">
             <div className="cartitem__control">
-              <i className="far fa-heart"></i>
               <i
                 onClick={handleRemoveCartItem}
                 id={product._id}

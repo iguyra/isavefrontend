@@ -3,6 +3,10 @@
   margin: auto;
   padding-top: 10rem;
 
+  &__details {
+    margin-left: 1rem;
+  }
+
   &__messagedisplay {
     display: flex;
     flex-direction: column;
@@ -56,12 +60,18 @@
   &__price {
     font-size: 1.8rem;
     text-transform: uppercase;
+
+    span {
+      font-size: 1rem;
+      color: #857f7f;
+      margin-right: 0.5rem;
+    }
   }
 
   &__bottom {
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 1.5rem;
     box-shadow: 0.5rem 0.5rem 0.5rem $color-grey-light;
   }
 
@@ -73,7 +83,16 @@
   }
 
   &__control {
-    margin-left: $margin-left-1;
+    margin-right: $margin-left-1;
+    cursor: pointer;
+    transition: 0.25s;
+    padding: 0 0.3rem;
+
+    &:hover,
+    &:active {
+      background-color: $color-grey-light;
+      transition: 0.25s;
+    }
   }
 
   &__qunatity {
@@ -85,20 +104,21 @@
 
     &--dec,
     &--inc {
-      background-color: red;
+      background-color: $color-grey-light;
       padding: 0rem;
       border-radius: 50%;
       width: 2rem;
       text-align: center;
       cursor: pointer;
+      color: $color-black;
     }
 
     &--number {
       margin: 0 0.5rem;
       background-color: $color-white;
-      color: $color-secondary-dark;
+      color: $color-grey-dark-3;
       width: 5rem;
-      border-bottom: 0.2rem solid $color-grey-light;
+      border: 0.2rem solid $color-grey-light;
     }
   }
 
@@ -137,6 +157,10 @@
     text-transform: uppercase;
     box-shadow: 0.5rem 0.5rem 0.5rem $color-grey-light;
     cursor: pointer;
+
+    &:hover {
+      background-color: rgba(218, 165, 32, 0.616);
+    }
   }
 
   &__policy {
