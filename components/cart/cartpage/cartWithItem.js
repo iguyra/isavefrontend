@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import Link from "next/link"
 import CartItem from "./CartItem";
 import { AppContext } from "../../../context/appContext";
 
@@ -32,9 +33,11 @@ const CartWithItem = (props) => {
           </div>
           <p className="cartitem__policy">delievry fee not included</p>
         </div>
+        <Link href="/checkout/details">
         <p className="cartitem__checkout" id="checkout">
           checkout
         </p>
+        </Link>
         <p className="cartitem__call">call to order</p>
       </div>
     </section>
