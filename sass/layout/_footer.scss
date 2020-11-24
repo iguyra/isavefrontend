@@ -1,0 +1,9 @@
+.footer {
+  padding: 2rem;
+  background-color: $color-black;
+
+  &__name {
+    color: $color-white;
+    font-size: 2rem;
+  }
+}

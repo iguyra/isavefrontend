@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import arrival from "../../frontend/data/arrival.json";
+import arrival from "../data/arrival.json";
 import AddToCartButton from "./cart/AddToCartButton";
 
 export default class Arrivals extends React.Component {

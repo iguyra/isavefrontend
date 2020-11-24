@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { getFrontUser } from "../../backend/fauthContoller";
+// import { getFrontUser } from "../../backend/fauthContoller";
 import CartWithItem from "../components/cart/cartpage/cartWithItem";
 import EmptyCart from "../components/cart/cartpage/EmptyCart";
 

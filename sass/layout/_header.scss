@@ -6,8 +6,18 @@
   position: fixed;
   background-color: transparent;
   z-index: 99;
-
+  border-top: 0.4rem solid;
   transition: all 0.35s;
+
+  &::after {
+    background: linear-gradient(to right, red, yellow, green);
+    position: absolute;
+    content: "";
+    height: 4px;
+    right: 0;
+    left: 0;
+    top: 0;
+  }
 
   &__detailscontainer {
     position: fixed;

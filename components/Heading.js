@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import axios from "axios";
-import { getFrontUser } from "../../backend/fauthContoller";
+// import { getFrontUser } from "../../backend/fauthContoller";
 import CartIcon from "./cart/CartIcon";
 
 class Heading extends React.Component {
