@@ -46,9 +46,11 @@ class Heading extends React.Component {
               placeholder="search product"
               id="searchinput"
             />
-            <a href="#" className="searchtest__searchbutton" id="searchbutton">
+            <Link  href="/search" >
+            <a className="searchtest__searchbutton" id="searchbutton">
               <i className="fas fa-search"></i>
-            </a>
+              </a>
+            </Link>
           </div>
         </div>
 
@@ -69,7 +71,7 @@ class Heading extends React.Component {
             )}
           </div>
           <div className="header__cart">
-            
+
             <CartIcon />
            
           </div>

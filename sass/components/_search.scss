@@ -1,0 +1,27 @@
+.search {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-top: 2rem;
+  border-bottom: 1rem solid $color-grey-light;
+
+  &__input {
+    width: 70%;
+    padding: 1rem;
+    border: 0;
+    box-shadow: 0rem 0.5rem 1rem $color-grey-light;
+    text-align: center;
+    margin: 0 0.5rem;
+    margin-bottom: 1rem;
+
+    &::placeholder {
+      color: $color-grey-light;
+    }
+  }
+
+  &__button,
+  &__back {
+    font-size: 1.5rem;
+  }
+}
