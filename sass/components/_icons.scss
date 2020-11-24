@@ -3,6 +3,11 @@
   font-size: 1.5rem;
   cursor: pointer;
   color: $color-black;
+
+  &:hover,
+  &:active {
+    @include acticeForIcons;
+  }
 }
 
 .fa-search {
@@ -23,6 +28,11 @@
   padding: 1.5rem;
   border-radius: 50%;
   text-align: center;
+
+  &:hover,
+  &:active {
+    background-color: $color-white;
+  }
 }
 
 .fa-heart,

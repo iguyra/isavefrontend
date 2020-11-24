@@ -69,12 +69,9 @@ class Heading extends React.Component {
             )}
           </div>
           <div className="header__cart">
+            
             <CartIcon />
-            {/* <Link href="/cart">
-              <a>
-                <i className="fas fa-cart-plus"></i>
-              </a>
-            </Link> */}
+           
           </div>
         </div>
       </section>
@@ -83,3 +80,8 @@ class Heading extends React.Component {
 }
 
 export default Heading;
+ {/* <Link href="/cart">
+              <a>
+                <i className="fas fa-cart-plus"></i>
+              </a>
+            </Link> */}
