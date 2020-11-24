@@ -11,7 +11,7 @@
   {
     "_id": 2,
     "image": "/static/lili4.jpg",
-    "name": "top and bottom beautiful bikini top and bottom",
+    "name": "top and bottom beautiful",
     "price": 96,
     "slug": "bikitop",
     "addtocat": "add to cart",
@@ -20,7 +20,7 @@
   {
     "_id": 3,
     "image": "/static/lili1.jpg",
-    "name": "top and bottom beautiful bikini top and bottom",
+    "name": "bikini top and bottom",
     "price": 26,
     "addtocat": "add to cart",
     "slug": "bikitoptop",
@@ -29,7 +29,7 @@
   {
     "_id": 4,
     "image": "/static/lili.jpg",
-    "name": "top and bottom beautiful bikini top and bottom",
+    "name": "top beautiful bottom",
     "price": 46,
     "addtocat": "add to cart",
     "slug": "bikitopbottom",
