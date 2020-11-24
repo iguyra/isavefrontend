@@ -47,9 +47,11 @@ class Heading extends React.Component {
               id="searchinput"
             />
            
-            <a  href="/search"className="searchtest__searchbutton" id="searchbutton">
-              <i className="fas fa-search"></i>
-              </a>
+            <Link href="/search">
+                <a>
+                <i className="fas fa-search"></i>
+                </a>
+              </Link>
           </div>
         </div>
 
