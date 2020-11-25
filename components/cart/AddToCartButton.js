@@ -42,6 +42,7 @@ const AddToCartButton = (props) => {
           text-transform: capitalize;
           padding: 0.5rem 1rem;
           cursor: pointer;
+          width: 100%
         }
       `}</style>
     </React.Fragment>

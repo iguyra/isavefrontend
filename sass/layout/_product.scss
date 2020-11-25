@@ -64,7 +64,7 @@
   }
 
   &__addtocart {
-    text-align: start;
+    width: 100%;
 
     &--text {
       font-size: 1rem;
@@ -73,7 +73,6 @@
       margin-top: 1rem;
       cursor: pointer;
       padding: 0.5rem;
-      background-color: $color-grey-light;
     }
   }
 }
