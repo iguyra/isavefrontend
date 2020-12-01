@@ -7,6 +7,8 @@ class Heading extends React.Component {
   state = {
     user: {},
     headerActive: "header",
+    menuActive: false,
+    navigation:"navigation"
   };
 
   async componentDidMount() {
@@ -27,12 +29,16 @@ class Heading extends React.Component {
     }
   };
 
+   openMenu = () => {
+     this.setState({ menuActive: !this.state.menuActive })
+  }
+
   render() {
-    const { user, headerActive } = this.state;
+    const { user, headerActive,menuActive ,navigation} = this.state;
     return (
       <section className={headerActive}>
         <div className="header__details">
-          <div className="header__menu"></div>
+          <div onClick={this.openMenu} className="header__menu"></div>
           <Link href="/">
             <a className="header__name">iguyra</a>
           </Link>
@@ -76,6 +82,32 @@ class Heading extends React.Component {
            
           </div>
         </div>
+
+       
+        <section class={menuActive ? "navigation" : "navigation off"} id="navigation">
+      <div class="navigation__item">
+        <a class="navigation__list">about us</a>
+        <a class="navigation__list"
+          ><p>contact</p>
+          <i class="far fa-address-card"></i
+        ></a>
+        <a class="navigation__list"
+          ><p class="navigation__callus">
+            call us <span class="call-green"></span>
+          </p>
+          <i class="fas fa-phone-volume"></i
+        ></a>
+        <div class="navigation__category">
+          categories
+          <a class="navigation__category--list">bikinis</a>
+          <a class="navigation__category--list">tops</a>
+          <a class="navigation__category--list">underwears</a>
+        </div>
+      </div>
+      <div class="navigation__close" id="close">x</div>
+      <div class="navigation__detail">iguyra.com</div>
+    </section>
+
       </section>
     );
   }
@@ -87,3 +119,4 @@ export default Heading;
                 <i className="fas fa-cart-plus"></i>
               </a>
             </Link> */}
+
