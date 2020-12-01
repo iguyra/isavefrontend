@@ -100,9 +100,9 @@ class Heading extends React.Component {
         ></a>
         <div class="navigation__category">
           categories
-          <a class="navigation__category--list">bikinis</a>
-          <a class="navigation__category--list">tops</a>
-          <a class="navigation__category--list">underwears</a>
+          <a class="navigation__category--list">women</a>
+          <a class="navigation__category--list">men</a>
+          <a class="navigation__category--list">accesories</a>
         </div>
       </div>
       <div class="navigation__close" id="close">x</div>

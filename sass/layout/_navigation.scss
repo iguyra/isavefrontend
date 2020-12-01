@@ -14,11 +14,13 @@
     width: 80%;
     transition-duration: 500ms;
     transition: all 0.25s;
+    border: 1rem solid $color-grey-light;
   }
 
   &__item {
     margin-top: 4rem;
     margin-left: 2rem;
+    padding-top: 1rem;
   }
 
   &__list {
@@ -29,6 +31,7 @@
     display: flex;
     width: 60%;
     justify-content: space-between;
+    margin-top: 2rem;
   }
 
   &__close {
