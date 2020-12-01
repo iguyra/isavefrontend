@@ -35,6 +35,15 @@
     &--link {
       text-decoration: none;
       color: rgba(28, 116, 218, 0.753);
+
+      &:hover {
+        color: $color-white;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(28, 116, 218, 0.753);
+      color: $color-white;
     }
   }
 
