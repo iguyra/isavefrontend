@@ -1,14 +1,24 @@
 .navigation {
-  background-color: $color-white;
+  background-color: rgba(0, 0, 0, 0.171);
   position: fixed;
-  top: 8rem;
-  height: 60vh;
-  width: 25rem;
+  top: 6rem;
+  height: 100vh;
+  width: 100%;
   transition-duration: 500ms;
   transition: all 0.25s;
 
+  &__container {
+    background-color: $color-white;
+    top: 6rem;
+    height: 60vh;
+    width: 80%;
+    transition-duration: 500ms;
+    transition: all 0.25s;
+  }
+
   &__item {
-    margin-top: 0.4rem;
+    margin-top: 4rem;
+    margin-left: 2rem;
   }
 
   &__list {
@@ -65,6 +75,6 @@
 }
 
 .off {
-  transform: translateX(-60vh);
+  transform: translateX(-120vh);
   transition: all 0.35s;
 }

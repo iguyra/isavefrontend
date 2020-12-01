@@ -85,7 +85,8 @@ class Heading extends React.Component {
 
        
         <section class={menuActive ? "navigation" : "navigation off"} id="navigation">
-      <div class="navigation__item">
+          <div className="navigation__container">
+          <div class="navigation__item">
         <a class="navigation__list">about us</a>
         <a class="navigation__list"
           ><p>contact</p>
@@ -106,7 +107,10 @@ class Heading extends React.Component {
       </div>
       <div class="navigation__close" id="close">x</div>
       <div class="navigation__detail">iguyra.com</div>
-    </section>
+
+          </div>
+    
+       </section>
 
       </section>
     );
