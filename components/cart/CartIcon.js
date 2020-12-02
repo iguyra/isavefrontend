@@ -24,7 +24,7 @@ const CartIcon = () => {
         <div className="cartIcon__cartDetailContainer">
           <span>{productCount ? <span>{productCount} </span> : ""}</span>
           <a className="totalPrice">
-            {totalPrice ? <span>${totalPrice}</span> : ""}
+            {totalPrice ? <span>GHS {totalPrice}</span> : ""}
           </a>
         </div>
       </div>

@@ -26,7 +26,7 @@ exports.getFrontUser = async (token) => {
     };
 
     const { data } = await axios.get(
-      "http://localhost:3000/api/users/cart",
+      "/api/users/cart",
       config
     );
     return data;

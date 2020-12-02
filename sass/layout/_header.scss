@@ -94,7 +94,7 @@
   transition: all 0.35s;
 }
 
-.header__menu.x {
+.header__menu.active {
   &::after,
   &::before {
     content: "";

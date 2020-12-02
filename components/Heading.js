@@ -38,7 +38,7 @@ class Heading extends React.Component {
     return (
       <section className={headerActive}>
         <div className="header__details">
-          <div onClick={this.openMenu} className={menuActive ? "header__menu x" : "header__menu"}></div>
+          <div onClick={this.openMenu} className={menuActive ? "header__menu active" : "header__menu"}></div>
           <Link href="/">
             <a className="header__name">iguyra</a>
           </Link>
