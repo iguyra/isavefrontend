@@ -76,6 +76,7 @@
       background-color: $color-black;
 
       position: absolute;
+      transition: all 0.25s;
     }
 
     &::before {
@@ -91,6 +92,28 @@
   background-color: $color-white;
   border-bottom: 1px solid $color-grey-light;
   transition: all 0.35s;
+}
+
+.header__menu.x {
+  &::after,
+  &::before {
+    content: "";
+    width: 2.5rem;
+    height: 0.3rem;
+    background-color: $color-black;
+
+    position: absolute;
+    transition: all 0.25s;
+  }
+
+  &::before {
+    transform: translateY(-0.6rem);
+    transform: rotate(25deg);
+  }
+  &::after {
+    transform: translateY(0.6rem);
+    transform: rotate(-25deg);
+  }
 }
 
 @keyframes animatedImage {

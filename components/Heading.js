@@ -8,7 +8,7 @@ class Heading extends React.Component {
     user: {},
     headerActive: "header",
     menuActive: false,
-    navigation:"navigation"
+ 
   };
 
   async componentDidMount() {
@@ -38,7 +38,7 @@ class Heading extends React.Component {
     return (
       <section className={headerActive}>
         <div className="header__details">
-          <div onClick={this.openMenu} className="header__menu"></div>
+          <div onClick={this.openMenu} className={menuActive ? "header__menu x" : "header__menu"}></div>
           <Link href="/">
             <a className="header__name">iguyra</a>
           </Link>
@@ -105,7 +105,7 @@ class Heading extends React.Component {
           <a class="navigation__category--list">accesories</a>
         </div>
       </div>
-      <div class="navigation__close" id="close">x</div>
+      <div class="navigation__close" id="close"></div>
       <div class="navigation__detail">iguyra.com</div>
 
           </div>
