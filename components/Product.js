@@ -10,7 +10,7 @@ export default class Product extends React.Component {
   };
 
   async componentDidMount() {
-    const { data } = await axios.get("http://localhost:3000/api/products");
+    const { data } = await axios.get("https://iguyra.herokuapp.com/api/products");
     this.setState({ product: data.product });
   }
 
