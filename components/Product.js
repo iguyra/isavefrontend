@@ -22,8 +22,8 @@ export default class Product extends React.Component {
         {/* <h4 className="product__phrase">trending this week</h4> */}
         {/* <div className="product__list"> */}
           {products.map((product) => {
-            console.log("product from product", product);
-            return <Card product={product} />;
+     
+            return <Card key={product._id} product={product} />;
           })}
         {/* </div> */}
       </section>

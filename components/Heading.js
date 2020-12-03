@@ -84,29 +84,29 @@ class Heading extends React.Component {
         </div>
 
        
-        <section class={menuActive ? "navigation" : "navigation off"} id="navigation">
+        <section className={menuActive ? "navigation" : "navigation off"} id="navigation">
           <div className="navigation__container">
-          <div class="navigation__item">
-        <a class="navigation__list">about us</a>
-        <a class="navigation__list"
+          <div className="navigation__item">
+        <a className="navigation__list">about us</a>
+        <a className="navigation__list"
           ><p>contact</p>
-          <i class="far fa-address-card"></i
+          <i className="far fa-address-card"></i
         ></a>
-        <a class="navigation__list"
-          ><p class="navigation__callus">
-            call us <span class="call-green"></span>
+        <a className="navigation__list"
+          ><p className="navigation__callus">
+            call us <span className="call-green"></span>
           </p>
-          <i class="fas fa-phone-volume"></i
+          <i className="fas fa-phone-volume"></i
         ></a>
-        <div class="navigation__category">
+        <div className="navigation__category">
           categories
-          <a class="navigation__category--list">women</a>
-          <a class="navigation__category--list">men</a>
-          <a class="navigation__category--list">accesories</a>
+          <a className="navigation__category--list">women</a>
+          <a className="navigation__category--list">men</a>
+          <a className="navigation__category--list">accesories</a>
         </div>
       </div>
-      <div class="navigation__close" id="close"></div>
-      <div class="navigation__detail">iguyra.com</div>
+      <div className="navigation__close" id="close"></div>
+      <div className="navigation__detail">iguyra.com</div>
 
           </div>
     
