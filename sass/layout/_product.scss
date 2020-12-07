@@ -13,9 +13,32 @@
     justify-content: space-between;
     box-shadow: 0 0.2rem 0.3rem $color-grey-light;
     margin: 0.5rem;
-
+    position: relative;
     &:hover {
       box-shadow: 0 0.2rem 0.3rem $color-primary;
+    }
+
+    &:empty {
+      height: 200px;
+      width: 150px;
+      background-image: radial-gradient(circle 20px, #ccc 100%, transparent),
+        linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc),
+        linear-gradient(#f1f1f1, #f1f1f1);
+      background-size: 48px 48px, 190px 40px, 100% 100%;
+      background-position: 50% 24px, 15px 140px, 15px 200px, 0 0;
+      background-repeat: no-repeat;
+    }
+
+    &:empty:after {
+      content: "";
+      height: 6px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: linear-gradient(to left, #92fe9d, #00c9ff);
+      background-size: 200% 200%;
+      animation: loadingGradient 1s infinite;
     }
   }
 
@@ -77,5 +100,14 @@
       cursor: pointer;
       padding: 0.5rem;
     }
+  }
+}
+
+@keyframes loadingGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: -200% 0%;
   }
 }
