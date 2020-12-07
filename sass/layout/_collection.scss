@@ -9,7 +9,7 @@
     height: 40rem;
     background-color: $color-primary;
     // background-image: url("/static/lili.jpg");
-    background-image: linear-gradient(#ccc3c36b, #37363685),
+    background-image: linear-gradient($color-grey-light-1, #37363685),
       url("/static/lili.jpg");
     background-size: cover;
   }
