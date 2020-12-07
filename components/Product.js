@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Link from "next/link";
 import Card from "./Card";
 
 import products from "../data/products.json";
@@ -26,6 +27,11 @@ export default class Product extends React.Component {
             return <Card key={product._id} product={product} />;
           })}
         {/* </div> */}
+        <div className="">
+          <Link href="/allproducts">
+            <p>all products</p>
+          </Link>
+        </div>
       </section>
     );
   }
