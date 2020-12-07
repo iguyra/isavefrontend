@@ -9,7 +9,6 @@ const details = () => {
   const [products, setProducts] = useState([]);
   const [openPay, setOpenPay] = useState(false);
 
-  console.log(products);
 
   useEffect(() => {
     let cart = localStorage.getItem("isavecart");

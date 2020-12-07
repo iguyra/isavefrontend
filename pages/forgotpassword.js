@@ -4,10 +4,9 @@ import axios from "axios";
 import Layout from "../components/Layout";
 import Link from "next/link";
 
-class login extends React.Component {
+class forgotpassword extends React.Component {
   state = {
     email: "",
-    password: "",
     data: {},
   };
 
@@ -18,10 +17,10 @@ class login extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { email, password } = this.state;
-    console.log("email", email, password);
+    const { email } = this.state;
+    console.log("email", email);
     console.log("on login");
-    const { data } = await axios.post("https://iguyra.herokuapp.com/api/users/login", { email, password });
+    const { data } = await axios.post("https://cors-anywhere.herokuapp.com/http://localhost:3080/api/users/forgotPassword", { email });
 
     localStorage.setItem("token", data.token);
 
@@ -33,54 +32,42 @@ class login extends React.Component {
   render() {
     const { data } = this.state;
     return (
-      <Layout>
         <section className="siginin" id="signin">
           <Link href="/">
             <a className="siginin__sitename" id="sitename">
               iguyra <span>&larr;</span>
             </a>
-          </Link>
+            </Link>
+            <p className="siginin__paragraph">
+                we will send you and email to reset your password
+            </p>
           <form className="siginin__form" onSubmit={this.handleSubmit} action="">
             <label className="siginin__label" htmlFor="email">
-              email
+             
               <input
                 className="siginin__input"
                 name="email"
                 type="email"
                 id="email"
-                placeholder="eg: res@res.com"
+                placeholder="please enter your email"
                 onChange={this.handleChange}
               />
             </label>
-            <label className="siginin__label" htmlFor="password">
-              password
-              <input
-                className="siginin__input"
-                name="password"
-                type="password"
-                id="password"
-                placeholder="type password"
-                onChange={this.handleChange}
-              />
-            </label>
-
-            <button className="siginin__button">login</button>
+           
+            <button className="siginin__button">submit</button>
 
             <div className="siginin__details">
-              <Link href="/forgotpassword">
-                <a className="siginin__passwordforgot">forgot your password ?</a>
-              </Link>
-              <Link href="/signup">
+              
+              <Link href="/login">
                 <a className="siginin__register" id="createaccount">
-                  create an account
+                  login
                 </a>
               </Link>
             </div>
           </form>
         </section>
-      </Layout>
     );
   }
 }
 
-export default login;
+export default forgotpassword;

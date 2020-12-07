@@ -73,6 +73,13 @@
     text-decoration: none;
     text-transform: uppercase;
   }
+
+  &__paragraph {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    border: 1px solid $color-grey-light;
+    padding: 2rem 1rem;
+  }
 }
 
 .appear {
