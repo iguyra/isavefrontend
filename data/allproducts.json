@@ -22,7 +22,21 @@
     },
     {
       "_id": 4,
-      "image": "/static/llili2.jpg",
+      "image": "/static/li1.jpg",
+      "name": "FALL FIRE SLEEVELESS TRENCH VEST",
+      "price": 76,
+      "addtocat": "add to cart"
+    },
+    {
+      "_id": 5,
+      "image": "/static/li3.jpg",
+      "name": "FALL FIRE SLEEVELESS TRENCH VEST",
+      "price": 76,
+      "addtocat": "add to cart"
+    },
+    {
+      "_id": 6,
+      "image": "/static/li4.jpg",
       "name": "FALL FIRE SLEEVELESS TRENCH VEST",
       "price": 76,
       "addtocat": "add to cart"
