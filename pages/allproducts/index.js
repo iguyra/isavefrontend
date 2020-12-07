@@ -14,7 +14,7 @@ const allproducts = (props) => {
           <p className="collection__category"> all products  </p>
         </div>
         <p className="collection__description">
-        iguyra is a african fashion brand with beautiful ankara prints pieces vibrants for the every day queen ,and king . originating from ivorycoast ,Lilicreation encourage our queen and king to always be fabulous and beautiful
+        iguyra is a african fashion brand with beautiful ankara prints pieces vibrants for the every day queen ,and king . originating from ivorycoast ,iguyra encourage our queen and king to always be fabulous and beautiful
         </p>
       </section>
       <div className="collection__filter">
