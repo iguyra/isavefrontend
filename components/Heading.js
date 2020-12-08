@@ -4,6 +4,8 @@ import { getFrontUser } from "../functions/fauthContoller";
 import CartIcon from "./cart/CartIcon";
 
 class Heading extends React.Component {
+  isMounted = false;
+
   state = {
     user: {},
     headerActive: "header",
@@ -12,6 +14,7 @@ class Heading extends React.Component {
   };
 
   async componentDidMount() {
+    this.isMounted = true
     const token = localStorage.getItem("token");
     const data = await getFrontUser(token);
     if (data) {
@@ -20,10 +23,15 @@ class Heading extends React.Component {
 
     window.addEventListener("scroll", this.handleBackground);
   }
+  componentWillUnmount() {
+    this.isMounted =  false
+  }
 
   handleBackground = () => {
     if (window.scrollY > 96) {
       this.setState({ headerActive: "header active" });
+      console.log(window.scrollY)
+
     } else {
       this.setState({ headerActive: "header" });
     }

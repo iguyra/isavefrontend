@@ -8,7 +8,7 @@ const Allproducts = ({ product }) => {
    
       <section className="allproducts">          
 {allproduct.map(product => {
-   return <Card product={product} />
+   return <Card key={product._id} product={product} />
 })}
 </section>
   );
