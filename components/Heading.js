@@ -30,8 +30,6 @@ class Heading extends React.Component {
   handleBackground = () => {
     if (window.scrollY > 96) {
       this.setState({ headerActive: "header active" });
-      console.log(window.scrollY)
-
     } else {
       this.setState({ headerActive: "header" });
     }
