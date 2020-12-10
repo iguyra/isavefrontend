@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Router from "next/router";
 import axios from "axios";
 import Header from "../../../components/Heading";
 import Layout from "../../../components/Layout";
@@ -32,7 +33,7 @@ class updatePassword extends React.Component {
     const { currentPassword,password,passwordConfirm } = this.state;
     console.log(currentPassword,password,passwordConfirm)
     const { data } = await axios.patch("https://cors-anywhere.herokuapp.com/https://iguyra.herokuapp.com/api/users/updatePassword", {currentPassword,password,passwordConfirm},config);
-
+    Router.push("/");
 
     this.setState({ data: data });
   };
