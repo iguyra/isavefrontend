@@ -20,7 +20,7 @@ class Heading extends React.Component {
       },
     };
 
-    const { data } = await axios.get("http://localhost:3000/api/users/cart", config);
+    const { data } = await axios.get("https://iguyra.herokuapp.com/api/users/cart", config);
     console.log("heading dataaaaaaaaaaaaaaaaaaaaaa", data);
     this.setState({ user: data.user });
   }
