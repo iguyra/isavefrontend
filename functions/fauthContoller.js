@@ -26,7 +26,7 @@ exports.getFrontUser = async (token) => {
     };
 
     const { data } = await axios.get(
-      "https://http://localhost:3000/api/users/cart",
+      "https://iguyra.herokuapp.com/api/users/cart",
       config
     );
     return data;
