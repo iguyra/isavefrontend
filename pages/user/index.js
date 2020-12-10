@@ -39,7 +39,7 @@ class Heading extends React.Component {
         <section className="user">
           <div className="user__container">
             <div className="user__details">
-              <p className="user__email">restonson@mail.com</p>
+              <p className="user__email">{ user.email}</p>
               <p className="user__name">reston anderson</p>
             </div>
             <div className="user__star">
