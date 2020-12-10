@@ -20,12 +20,10 @@ class forgotpassword extends React.Component {
     const { email } = this.state;
     console.log("email", email);
     console.log("on login");
-    const { data } = await axios.post("https://cors-anywhere.herokuapp.com/http://localhost:3080/api/users/forgotPassword", { email });
+    const { data } = await axios.patch("http://localhost:3080/api/users/forgotPassword", { email });
 
-    localStorage.setItem("token", data.token);
-
-    console.log("login user:", data.token);
-    Router.push("/");
+    console.log("password reset sent",data);
+    // Router.push("/");
     this.setState({ data: data });
   };
 
@@ -38,8 +36,9 @@ class forgotpassword extends React.Component {
               iguyra <span>&larr;</span>
             </a>
             </Link>
-            <p className="siginin__paragraph">
-                we will send you and email to reset your password
+        <p className="siginin__paragraph">
+          {data.message ? "token sent to your email" : " we will send you and email to reset your password"}
+               
             </p>
           <form className="siginin__form" onSubmit={this.handleSubmit} action="">
             <label className="siginin__label" htmlFor="email">
@@ -54,7 +53,7 @@ class forgotpassword extends React.Component {
               />
             </label>
            
-            <button className="siginin__button">submit</button>
+          <button className="siginin__button">{ data.message ? "submit": "submited"}</button>
 
             <div className="siginin__details">
               

@@ -14,9 +14,8 @@ class Heading extends React.Component {
   };
 
   async componentDidMount() {
-    this.isMounted = true
     window.addEventListener("scroll", this.handleBackground,true);
-
+    this.isMounted = true
     const token = localStorage.getItem("token");
     const data = await getFrontUser(token);
     if (data) {
@@ -24,15 +23,10 @@ class Heading extends React.Component {
     }
 
   }
-  componentWillUnmount() {
-    this.isMounted =  false
-  }
 
   handleBackground = () => {
     if (window.scrollY > 96) {
-      console.log(window.scrollY)
-      this.setState({ headerActive: "header active" });
-     
+      this.setState({ headerActive: "header active" });   
 
     } else {
       this.setState({ headerActive: "header" });
