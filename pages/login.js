@@ -13,9 +13,7 @@ class login extends React.Component {
     data: {},
   };
 
-  componentDidMount() {
-    Aos.init({duration: 2000})
-  }
+  
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -40,7 +38,7 @@ class login extends React.Component {
     const { data } = this.state;
     return (
       <Layout>
-        <section data-aos="fade-up" className="siginin" id="signin">
+        <section className="siginin" id="signin">
           <Link href="/">
             <a className="siginin__sitename" id="sitename">
               iguyra <span>&larr;</span>
