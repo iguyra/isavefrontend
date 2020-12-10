@@ -1,6 +1,8 @@
 import React from "react";
 import Router from "next/router";
 import axios from "axios";
+import Aos from "aos";
+import "aos/dist/aos.css"
 import Layout from "../components/Layout";
 import Link from "next/link";
 
@@ -10,6 +12,10 @@ class login extends React.Component {
     password: "",
     data: {},
   };
+
+  componentDidMount() {
+    Aos.init({duration: 2000})
+  }
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -34,7 +40,7 @@ class login extends React.Component {
     const { data } = this.state;
     return (
       <Layout>
-        <section className="siginin" id="signin">
+        <section data-aos="fade-up" className="siginin" id="signin">
           <Link href="/">
             <a className="siginin__sitename" id="sitename">
               iguyra <span>&larr;</span>

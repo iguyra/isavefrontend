@@ -90,7 +90,7 @@ class Heading extends React.Component {
             <li className="account__item">
               <div className="account__first">
                 <i class="fab fa-first-order"></i>
-                <Link href="/user/changepassword">
+                <Link href="/user/updatePassword">
                   <a className="account__orders">change paswword</a>
                 </Link>
               </div>
