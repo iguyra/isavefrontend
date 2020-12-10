@@ -53,7 +53,7 @@ class forgotpassword extends React.Component {
               />
             </label>
            
-          <button className="siginin__button">{ data.message ? "submit": "submited"}</button>
+          <button className="siginin__button">{ data.message ? "submited": "submit"}</button>
 
             <div className="siginin__details">
               
