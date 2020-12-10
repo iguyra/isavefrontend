@@ -1,12 +1,17 @@
 import React from "react";
 import Link from "next/link";
+import Aos from "aos";
+import "aos/dist/aos.css"
 import arrival from "../data/arrival.json";
 import AddToCartButton from "./cart/AddToCartButton";
 
 export default class Arrivals extends React.Component {
+  componentDidMount() {
+    Aos.init({duration: 2000})
+  }
   render() {
     return (
-      <section className="arrivals">
+      <section data-aos="fade-up" className="arrivals">
         <h4 className="product__phrase">new arrivals</h4>
 
         <ul className="arrivals__list">
