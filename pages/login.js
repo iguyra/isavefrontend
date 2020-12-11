@@ -12,7 +12,9 @@ class login extends React.Component {
     email: "",
     password: "",
     data: {},
-    isLogging: false
+    isLogging: false,
+    error: false,
+    errorMsg: ""
   };
 
 
@@ -40,15 +42,17 @@ class login extends React.Component {
     Router.push("/");
     this.setState({ data: data });
     } catch (error) {
-      console.log(error.response.data)
+      this.setState({errorMsg:error.response.data.message})
+      this.setState({error:true})
    }
   };
 
   render() {
-    const { data,isLogging } = this.state;
+    const { data, isLogging, error,errorMsg } = this.state;
     return (
       <Layout>
         <section className="siginin" id="signin">
+          {error ? <p className="error">{ errorMsg}</p>: ""}
           <Link href="/">
             <a className="siginin__sitename" id="sitename">
               iguyra <span>&larr;</span>

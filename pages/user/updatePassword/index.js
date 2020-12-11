@@ -11,6 +11,8 @@ class updatePassword extends React.Component {
     currentPassword: "",
     password: "",
     passwordConfirm: "",
+    error: false,
+    errorMsg: ""
 
   };
 
@@ -21,7 +23,8 @@ class updatePassword extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    const token = localStorage.getItem("token");
+    try {
+      const token = localStorage.getItem("token");
 
     console.log("componentmounted", token);
     const config = {
@@ -36,12 +39,19 @@ class updatePassword extends React.Component {
     Router.push("/");
 
     this.setState({ data: data });
+    } catch (error) {
+      this.setState({errorMsg:error.response.data.message})
+     console.log(error.response.data)
+      this.setState({error:true})
+   }
   };
 
   render() {
+    const {error, errorMsg} = this.state
     return (
       <section className="useredit" id="signup">
         <div className="secondaryheading">
+        {error ? <p className="error">{ errorMsg}</p>: ""}
           <p className="secondaryheading__word">change password</p>
         </div>
         <form className="form" action="" onSubmit={this.handleSubmit}>

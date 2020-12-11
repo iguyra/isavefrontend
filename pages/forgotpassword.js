@@ -10,6 +10,8 @@ class forgotpassword extends React.Component {
   state = {
     email: "",
     data: {},
+    errorMsg: "",
+    error: false,
   };
 
   handleChange = (event) => {
@@ -17,23 +19,28 @@ class forgotpassword extends React.Component {
   };
 
   handleSubmit = async (event) => {
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
     const { email } = this.state;
-    console.log("email", email);
-    console.log("on login");
    
     const { data } = await axios.patch(`${URLbsaeAPI}/api/users/forgotPassword`, { email });
 
     console.log("password reset sent",data);
     // Router.push("/");
     this.setState({ data: data });
+    } catch (error) {
+      this.setState({errorMsg:error.response.data.message})
+      this.setState({error:true})
+   }
   };
 
   render() {
-    const { data } = this.state;
+    const { data, error,errorMsg } = this.state;
     return (
-        <section className="siginin" id="signin">
+      <section className="siginin" id="signin">
+                  {error ? <p className="error">{ errorMsg}</p>: ""}
+
           <Link href="/">
             <a className="siginin__sitename" id="sitename">
               iguyra <span>&larr;</span>
