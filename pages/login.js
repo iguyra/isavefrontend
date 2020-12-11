@@ -48,7 +48,8 @@ class login extends React.Component {
   };
 
   render() {
-    const { data, isLogging, error,errorMsg } = this.state;
+    const { data, isLogging, error, errorMsg } = this.state;
+    console.log(error)
     return (
       <Layout>
         <section className="siginin" id="signin">
