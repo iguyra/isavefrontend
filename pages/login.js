@@ -53,7 +53,7 @@ class login extends React.Component {
     return (
       <Layout>
         <section className="siginin" id="signin">
-          {error ? <p className="error">{ errorMsg}</p>: ""}
+         <p className="error">{ errorMsg}</p>
           <Link href="/">
             <a className="siginin__sitename" id="sitename">
               iguyra <span>&larr;</span>
