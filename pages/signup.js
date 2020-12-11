@@ -3,6 +3,8 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 import axios from "axios";
 import Router from "next/router";
+import URLbsaeAPI from "../functions/URLbaseAPI"
+
 
 export default class signup extends React.Component {
   state = {
@@ -21,7 +23,7 @@ export default class signup extends React.Component {
 
     const { email, password, passwordConfirm } = this.state;
 
-    const { data } = await axios.post("https://iguyra.herokuapp.com/api/users/signup", { email, password, passwordConfirm });
+    const { data } = await axios.post(`${URLbsaeAPI}/api/users/signup`, { email, password, passwordConfirm });
 
     console.log("this details", email, password, passwordConfirm);
     this.setState({ data: data });

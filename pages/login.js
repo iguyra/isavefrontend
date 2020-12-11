@@ -5,13 +5,17 @@ import Aos from "aos";
 import "aos/dist/aos.css"
 import Layout from "../components/Layout";
 import Link from "next/link";
+import URLbaseAPI from "../functions/URLbaseAPI"
 
 class login extends React.Component {
   state = {
     email: "",
     password: "",
     data: {},
+    isLogging: false
   };
+
+
 
   
 
@@ -21,21 +25,27 @@ class login extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-
-    const { email, password } = this.state;
+    try {
+      const { email, password } = this.state;
     console.log("email", email, password);
     console.log("on login");
-    const { data } = await axios.post("https://iguyra.herokuapp.com/api/users/login", { email, password });
+    this.setState({isLogging: true})
+    const { data } = await axios.post(`${URLbaseAPI}/api/users/login`, { email, password });
+
 
     localStorage.setItem("token", data.token);
 
     console.log("login user:", data.token);
+    
     Router.push("/");
     this.setState({ data: data });
+    } catch (error) {
+      console.log(error.response.data)
+   }
   };
 
   render() {
-    const { data } = this.state;
+    const { data,isLogging } = this.state;
     return (
       <Layout>
         <section className="siginin" id="signin">
@@ -68,13 +78,13 @@ class login extends React.Component {
               />
             </label>
 
-            <button className="siginin__button">login</button>
+            <button className="siginin__button">{ isLogging ? "logging": "login"}</button>
 
             <div className="siginin__details">
               <Link href="/forgotpassword">
                 <a className="siginin__passwordforgot">forgot your password ?</a>
               </Link>
-              <Link href="/signup">
+              <Link  href="/signup">
                 <a className="siginin__register" id="createaccount">
                   create an account
                 </a>

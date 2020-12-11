@@ -3,6 +3,8 @@ import Router from "next/router";
 import axios from "axios";
 import Layout from "../components/Layout";
 import Link from "next/link";
+import URLbsaeAPI from "../functions/URLbaseAPI"
+
 
 class forgotpassword extends React.Component {
   state = {
@@ -20,7 +22,8 @@ class forgotpassword extends React.Component {
     const { email } = this.state;
     console.log("email", email);
     console.log("on login");
-    const { data } = await axios.patch("http://localhost:3080/api/users/forgotPassword", { email });
+   
+    const { data } = await axios.patch(`${URLbsaeAPI}/api/users/forgotPassword`, { email });
 
     console.log("password reset sent",data);
     // Router.push("/");
