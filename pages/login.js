@@ -10,7 +10,7 @@ import URLbaseAPI from "../functions/URLbaseAPI"
 class login extends React.Component {
   state = {
     email: "admin@admin.com",
-    password: "xxxxxxxx",
+    password: "aaaaaaaa",
     data: {},
     isLogging: false,
     error: false,
@@ -43,7 +43,9 @@ class login extends React.Component {
     this.setState({ data: data });
     } catch (error) {
       this.setState({errorMsg:error.response.data.message})
-      this.setState({error:true})
+      this.setState({ error: true })
+      this.setState({ isLogging: false })
+
    }
   };
 
@@ -85,7 +87,7 @@ class login extends React.Component {
               />
             </label>
 
-            <button className="siginin__button">{ isLogging ? "logging": "login"}</button>
+            <button className="siginin__button">{ isLogging ? "logging...": "login"}</button>
 
             <div className="siginin__details">
               <Link href="/forgotpassword">

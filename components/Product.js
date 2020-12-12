@@ -4,6 +4,8 @@ import Link from "next/link";
 import Card from "./Card";
 import Aos from "aos";
 import "aos/dist/aos.css"
+import URLbaseAPI from "../functions/URLbaseAPI"
+
 
 import products from "../data/products.json";
 
@@ -17,7 +19,7 @@ export default class Product extends React.Component {
   }
 
   async componentDidMount() {
-    const { data } = await axios.get("https://iguyra.herokuapp.com/api/products");
+    const { data } = await axios.get(`${URLbaseAPI}/api/products`);
     this.setState({ product: data.product });
   }
 

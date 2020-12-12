@@ -34,13 +34,12 @@ class updatePassword extends React.Component {
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json"
       },
     };
 
     const { currentPassword,password,passwordConfirm } = this.state;
     console.log(currentPassword,password,passwordConfirm)
-    const { data } = await axios.patch(`http://localhost:3080/api/users/updatePassword`, {currentPassword,password,passwordConfirm},config);
+    const { data } = await axios.patch("https://cors-anywhere.herokuapp.com/https://iguyra.herokuapp.com/api/users/updatePassword", {currentPassword,password,passwordConfirm},config);
    
 console.log("password updated")
       this.setState({ data: data });
@@ -58,7 +57,6 @@ console.log("password updated")
     return (
       <section className="useredit" id="signup">
         <div className="secondaryheading">
-        {error ? <p className="error">{ errorMsg}</p>: ""}
           <p className="secondaryheading__word">change password</p>
         </div>
         <form className="form" action="" onSubmit={this.handleSubmit}>
