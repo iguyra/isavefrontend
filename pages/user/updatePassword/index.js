@@ -39,13 +39,13 @@ class updatePassword extends React.Component {
 
     const { currentPassword,password,passwordConfirm } = this.state;
     console.log(currentPassword,password,passwordConfirm)
-    const { data } = await axios.patch("https://iguyra.herokuapp.com/api/users/updatePassword", {currentPassword,password,passwordConfirm},config);
+    const { data } = await axios.patch("http://localhost:3080/api/users/updatePassword", {currentPassword,password,passwordConfirm},config);
    
 console.log("password updated")
       this.setState({ data: data });
       Router.push("/");
     } catch (error) {
-      console.log(error)
+      console.log("error")
       this.setState({errorMsg: error.response.data})
       this.setState({ error: true })
       this.setState({isUpdating: false})

@@ -10,7 +10,7 @@ import URLbaseAPI from "../functions/URLbaseAPI"
 class login extends React.Component {
   state = {
     email: "admin@admin.com",
-    password: "aaaaaaaa",
+    password: "xxxxxxxx",
     data: {},
     isLogging: false,
     error: false,
