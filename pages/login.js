@@ -9,8 +9,8 @@ import URLbaseAPI from "../functions/URLbaseAPI"
 
 class login extends React.Component {
   state = {
-    email: "",
-    password: "",
+    email: "admin@admin.com",
+    password: "xxxxxxxx",
     data: {},
     isLogging: false,
     error: false,
@@ -31,7 +31,7 @@ class login extends React.Component {
       const { email, password } = this.state;
     console.log("email", email, password);
     console.log("on login");
-    this.setState({isLogging: true})
+      this.setState({ isLogging: true })
     const { data } = await axios.post(`${URLbaseAPI}/api/users/login`, { email, password });
 
 
@@ -48,7 +48,7 @@ class login extends React.Component {
   };
 
   render() {
-    const { data, isLogging, error, errorMsg } = this.state;
+    const {email,password, data, isLogging, error, errorMsg } = this.state;
     console.log(error)
     return (
       <Layout>
@@ -69,6 +69,7 @@ class login extends React.Component {
                 id="email"
                 placeholder="eg: res@res.com"
                 onChange={this.handleChange}
+                value={email}
               />
             </label>
             <label className="siginin__label" htmlFor="password">
@@ -80,6 +81,7 @@ class login extends React.Component {
                 id="password"
                 placeholder="type password"
                 onChange={this.handleChange}
+                value={password}
               />
             </label>
 

@@ -12,6 +12,8 @@ export default class signup extends React.Component {
     password: "",
     passwordConfirm: "",
     data: {},
+    error: false,
+    errorMsg: ""
   };
 
   handleChange = (event) => {
@@ -21,19 +23,28 @@ export default class signup extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { email, password, passwordConfirm } = this.state;
+    try {
+      const { email, password, passwordConfirm } = this.state;
 
     const { data } = await axios.post(`${URLbsaeAPI}/api/users/signup`, { email, password, passwordConfirm });
 
     console.log("this details", email, password, passwordConfirm);
     this.setState({ data: data });
     Router.push("/login");
+    } catch (error) {
+      console.log(error.response.data)
+      this.setState({errorMsg:error.response.data.message})
+      this.setState({error:true})
+    }
   };
 
   render() {
+    const {errorMsg, error} = this.state
     return (
       <Layout>
         <section className="signup" id="signup">
+        {error ? <p className="error">{ errorMsg}</p>: ""}
+
           <Link href="/">
             <a className="signup__sitename" id="sitename1">
               iguyra <span>&larr;</span>

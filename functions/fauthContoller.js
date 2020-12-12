@@ -1,5 +1,7 @@
 const axios = require("axios");
 // const User = require("../");
+const URLbaseAPI = require("../functions/URLbaseAPI")
+
 const { promisify } = require("util");
 
 
@@ -24,9 +26,10 @@ exports.getFrontUser = async (token) => {
         Authorization: `Bearer ${token}`,
       },
     };
+    console.log(URLbaseAPI.default)
 
     const { data } = await axios.get(
-      "https://iguyra.herokuapp.com/api/users/cart",
+      `${URLbaseAPI.default}/api/users/cart`,
       config
     );
     return data;

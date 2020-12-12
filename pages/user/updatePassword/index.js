@@ -4,15 +4,18 @@ import Router from "next/router";
 import axios from "axios";
 import Header from "../../../components/Heading";
 import Layout from "../../../components/Layout";
+import URLbaseAPI from "../../../functions/URLbaseAPI"
+
 
 class updatePassword extends React.Component {
   state = {
     user: {},
-    currentPassword: "",
-    password: "",
-    passwordConfirm: "",
+    currentPassword: "xxxxxxxx",
+    password: "xxxxxxxx",
+    passwordConfirm: "xxxxxxxx",
     error: false,
-    errorMsg: ""
+    errorMsg: "",
+    isUpdating: false
 
   };
 
@@ -25,29 +28,33 @@ class updatePassword extends React.Component {
 
     try {
       const token = localStorage.getItem("token");
+      this.setState({isUpdating: true})
 
     console.log("componentmounted", token);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
       },
     };
 
     const { currentPassword,password,passwordConfirm } = this.state;
     console.log(currentPassword,password,passwordConfirm)
-    const { data } = await axios.patch("https://cors-anywhere.herokuapp.com/https://iguyra.herokuapp.com/api/users/updatePassword", {currentPassword,password,passwordConfirm},config);
-    Router.push("/");
-
-    this.setState({ data: data });
+    const { data } = await axios.patch(`http://localhost:3080/api/users/updatePassword`, {currentPassword,password,passwordConfirm},config);
+   
+console.log("password updated")
+      this.setState({ data: data });
+      Router.push("/");
     } catch (error) {
-      this.setState({errorMsg:error.response.data.message})
-     console.log(error.response.data)
-      this.setState({error:true})
+      console.log(error)
+      this.setState({errorMsg: error.response.data})
+      this.setState({ error: true })
+      this.setState({isUpdating: false})
    }
   };
 
   render() {
-    const {error, errorMsg} = this.state
+    const {isUpdating,error, errorMsg,currentPassword,password,passwordConfirm} = this.state
     return (
       <section className="useredit" id="signup">
         <div className="secondaryheading">
@@ -59,23 +66,23 @@ class updatePassword extends React.Component {
             <label className="form__label" htmlFor="email">
               current password
             </label>
-            <input onChange={this.handleChange} className="form__input" type="password" name="currentPassword"  />
+            <input onChange={this.handleChange} className="form__input" type="password" name="currentPassword" value={currentPassword} />
           </div>
           <div className="form__group">
             <label className="form__label" htmlFor="email">
               new password
             </label>
-            <input  onChange={this.handleChange}  className="form__input" type="password" name="password"  />
+            <input  onChange={this.handleChange}  className="form__input" type="password" name="password" value={password} />
           </div>
 
           <div className="form__group">
             <label className="form__label" htmlFor="email">
               retype new password
             </label>
-            <input  onChange={this.handleChange} className="form__input" type="password" name="passwordConfirm" />
+            <input  onChange={this.handleChange} className="form__input" type="password" name="passwordConfirm" value={passwordConfirm} />
           </div>
 
-          <button className="form__button">save</button>
+          <button className="form__button">{ isUpdating ? "updating...": "save"}</button>
         </form>
       </section>
     );
