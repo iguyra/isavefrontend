@@ -25,7 +25,7 @@ class updatePassword extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-
+console.log("clicked")
     try {
       const token = localStorage.getItem("token");
       this.setState({isUpdating: true})
@@ -45,7 +45,7 @@ console.log("password updated")
       this.setState({ data: data });
       Router.push("/");
     } catch (error) {
-      console.log("error")
+      console.log("error",error.response.data)
       this.setState({errorMsg: error.response.data})
       this.setState({ error: true })
       this.setState({isUpdating: false})
@@ -59,6 +59,7 @@ console.log("password updated")
         <div className="secondaryheading">
           <p className="secondaryheading__word">change password</p>
         </div>
+        {error ? <p className="error">{ errorMsg.message}</p>: ""}
         <form className="form" action="" onSubmit={this.handleSubmit}>
           <div className="form__group">
             <label className="form__label" htmlFor="email">
@@ -80,7 +81,7 @@ console.log("password updated")
             <input  onChange={this.handleChange} className="form__input" type="password" name="passwordConfirm" value={passwordConfirm} />
           </div>
 
-          <button className="form__button">{ isUpdating ? "updating...": "save"}</button>
+          <button disabled={isUpdating} className="form__button">{ isUpdating ? "updating...": "save"}</button>
         </form>
       </section>
     );

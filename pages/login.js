@@ -27,6 +27,7 @@ class login extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("clicked")
     try {
       const { email, password } = this.state;
     console.log("email", email, password);
@@ -87,7 +88,7 @@ class login extends React.Component {
               />
             </label>
 
-            <button className="siginin__button">{ isLogging ? "logging...": "login"}</button>
+            <button disabled={isLogging}  className="siginin__button">{ isLogging ? "logging...": "login"}</button>
 
             <div className="siginin__details">
               <Link href="/forgotpassword">
