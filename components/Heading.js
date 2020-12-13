@@ -23,7 +23,7 @@ class Heading extends React.Component {
       this.setState({ user: data.user });
     }
     } catch (error) {
-      
+      console.log("errorrr",error.response.data)
    }
 
   }
