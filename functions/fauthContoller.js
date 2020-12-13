@@ -32,6 +32,7 @@ exports.getFrontUser = async (token) => {
       `${URLbaseAPI.default}/api/users/cart`,
       config
     );
+
     return data;
   } catch (err) {
     console.log(err);
