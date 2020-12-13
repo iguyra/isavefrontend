@@ -15,7 +15,6 @@ class Heading extends React.Component {
   async componentDidMount() {
     const token = localStorage.getItem("token");
 
-    console.log("componentmounted", token);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -23,7 +22,6 @@ class Heading extends React.Component {
     };
 
     const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
-    console.log("heading dataaaaaaaaaaaaaaaaaaaaaa", data);
     this.setState({ user: data.user });
   }
 
@@ -35,7 +33,6 @@ class Heading extends React.Component {
 
   render() {
     const { user } = this.state;
-    console.log("render data", user);
     return (
       <Layout>
         <section className="user">

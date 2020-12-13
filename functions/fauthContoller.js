@@ -19,7 +19,6 @@ exports.getUser = (req, res) => {
 };
 
 exports.getFrontUser = async (token) => {
-  console.log("componentmounted", token);
   try {
     const config = {
       headers: {

@@ -12,6 +12,7 @@ class forgotpassword extends React.Component {
     data: {},
     errorMsg: "",
     error: false,
+    isSubmiting: false
   };
 
   handleChange = (event) => {
@@ -21,22 +22,27 @@ class forgotpassword extends React.Component {
   handleSubmit = async (event) => {
     try {
       event.preventDefault();
+      this.setState({isSubmiting:true})
 
     const { email } = this.state;
    
     const { data } = await axios.patch(`${URLbsaeAPI}/api/users/forgotPassword`, { email });
+    this.setState({error:false})
+    this.setState({isSubmiting:false})
 
     console.log("password reset sent",data);
     // Router.push("/");
     this.setState({ data: data });
     } catch (error) {
       this.setState({errorMsg:error.response.data.message})
-      this.setState({error:true})
+      this.setState({ error: true })
+      this.setState({isSubmiting:false})
+
    }
   };
 
   render() {
-    const { data, error,errorMsg } = this.state;
+    const { data, error,errorMsg ,isSubmiting} = this.state;
     return (
       <section className="siginin" id="signin">
                   {error ? <p className="error">{ errorMsg}</p>: ""}
@@ -47,9 +53,8 @@ class forgotpassword extends React.Component {
             </a>
             </Link>
         <p className="siginin__paragraph">
-          {data.message ? "token sent to your email" : " we will send you and email to reset your password"}
-               
-            </p>
+          {data.message ? "token sent to your email" : " we will send you and email to reset your password"}               
+        </p>
           <form className="siginin__form" onSubmit={this.handleSubmit} action="">
             <label className="siginin__label" htmlFor="email">
              
@@ -63,7 +68,7 @@ class forgotpassword extends React.Component {
               />
             </label>
            
-          <button className="siginin__button">{ data.message ? "submited": "submit"}</button>
+          <button  className="siginin__button">{ isSubmiting ? "submiting...": "submit"}</button>
 
             <div className="siginin__details">
               

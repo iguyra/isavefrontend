@@ -30,8 +30,6 @@ class login extends React.Component {
     console.log("clicked")
     try {
       const { email, password } = this.state;
-    console.log("email", email, password);
-    console.log("loged Sin");
       this.setState({ isLogging: true })
     const { data } = await axios.post(`${URLbaseAPI}/api/users/login`, { email, password });
 
