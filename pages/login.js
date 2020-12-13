@@ -33,7 +33,7 @@ class login extends React.Component {
     console.log("email", email, password);
     console.log("on login");
       this.setState({ isLogging: true })
-    const { data } = await axios.post(`https://iguyra.herokuapp.com/api/users/login`, { email, password });
+    const { data } = await axios.post(`http://localhost:3080/api/users/login`, { email, password });
 
 
     localStorage.setItem("token", data.token);
