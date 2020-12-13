@@ -14,13 +14,17 @@ class Heading extends React.Component {
   };
 
   async componentDidMount() {
-    window.addEventListener("scroll", this.handleBackground,true);
+    try {
+      window.addEventListener("scroll", this.handleBackground,true);
     this.isMounted = true
     const token = localStorage.getItem("token");
     const data = await getFrontUser(token);
     if (data) {
       this.setState({ user: data.user });
     }
+    } catch (error) {
+      console.log("errorrr",error.response.data)
+   }
 
   }
 
