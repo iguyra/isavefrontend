@@ -26,7 +26,7 @@ exports.getFrontUser = async (token) => {
         Authorization: `Bearer ${token}`,
       },
     };
-    console.log(URLbaseAPI.default)
+    console.log(URLbaseAPI.default,"getfrontuser")
 
     const { data } = await axios.get(
       `${URLbaseAPI.default}/api/users/cart`,
