@@ -41,7 +41,6 @@ export default class signup extends React.Component {
   render() {
     const {errorMsg, error} = this.state
     return (
-      <Layout>
         <section className="signup" id="signup">
         {error ? <p className="error">{ errorMsg}</p>: ""}
 
@@ -96,7 +95,6 @@ export default class signup extends React.Component {
             </div>
           </form>
         </section>
-      </Layout>
     );
   }
 }
