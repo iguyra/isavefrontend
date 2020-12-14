@@ -29,15 +29,10 @@ class login extends React.Component {
     event.preventDefault();
     console.log("clicked")
     try {
-      const { email, password } = this.state;
-      this.setState({ isLogging: true })
+    const { email, password } = this.state;
+    this.setState({ isLogging: true })
     const { data } = await axios.post(`${URLbaseAPI}/api/users/login`, { email, password });
-
-
     localStorage.setItem("token", data.token);
-
-    console.log("login user:", data.token);
-    
     Router.push("/");
     this.setState({ data: data });
     } catch (error) {
