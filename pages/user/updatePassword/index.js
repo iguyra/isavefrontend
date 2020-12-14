@@ -27,8 +27,8 @@ class updatepassword extends React.Component {
     event.preventDefault();
 console.log("clicked")
     try {
-      const token = localStorage.getItem("token");
-      this.setState({isUpdating: true})
+    const token = localStorage.getItem("token");
+    this.setState({isUpdating: true})
 
     console.log("componentmounted", token);
     const config = {
