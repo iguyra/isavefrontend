@@ -13,7 +13,8 @@ export default class signup extends React.Component {
     passwordConfirm: "",
     data: {},
     error: false,
-    errorMsg: ""
+    errorMsg: "",
+    isCreating: false
   };
 
   handleChange = (event) => {
@@ -25,7 +26,7 @@ export default class signup extends React.Component {
 
     try {
       const { email, password, passwordConfirm } = this.state;
-
+this.setState({isCreating: true})
     const { data } = await axios.post(`${URLbsaeAPI}/api/users/signup`, { email, password, passwordConfirm });
 
     console.log("this details", email, password, passwordConfirm);
@@ -35,11 +36,12 @@ export default class signup extends React.Component {
       console.log(error.response.data)
       this.setState({errorMsg:error.response.data.message})
       this.setState({error:true})
+      this.setState({isCreating:false})
     }
   };
 
   render() {
-    const {errorMsg, error} = this.state
+    const {errorMsg, error,isCreating} = this.state
     return (
         <section className="signup" id="signup">
         {error ? <p className="error">{ errorMsg}</p>: ""}
@@ -84,7 +86,7 @@ export default class signup extends React.Component {
               />
             </label>
 
-            <button className="signup__button">create account</button>
+          <button className="signup__button">{ isCreating ? "creating acount...": "create account"}</button>
 
             <div className="signup__details">
               <Link href="/login">
