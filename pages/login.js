@@ -37,7 +37,10 @@ class login extends React.Component {
     this.setState({ data: data });
     } catch (error) {
       if (error.response === "undefined") {
-        this.setState({errorMsg: "something went wrong, try again later"})
+         this.setState({ errorMsg: "something went wrong, try again later" })
+        this.setState({ error: true })
+        this.setState({ isLogging: false })
+        return
       }
       if (error.response.data.message) {
         this.setState({ errorMsg: error.response.data.message })
