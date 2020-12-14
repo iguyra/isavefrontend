@@ -7,7 +7,7 @@ import Layout from "../../../components/Layout";
 import URLbaseAPI from "../../../functions/URLbaseAPI"
 
 
-class updatePassword extends React.Component {
+class updatepassword extends React.Component {
   state = {
     user: {},
     currentPassword: "xxxxxxxx",
@@ -39,7 +39,7 @@ console.log("clicked")
 
     const { currentPassword,password,passwordConfirm } = this.state;
     console.log(currentPassword,password,passwordConfirm)
-    const { data } = await axios.patch("http://localhost:3080/api/users/updatePassword", {currentPassword,password,passwordConfirm},config);
+    const { data } = await axios.patch(`${URLbaseAPI}/api/users/updatePassword`, {currentPassword,password,passwordConfirm},config);
    
 console.log("password updated")
       this.setState({ data: data });
@@ -88,4 +88,4 @@ console.log("password updated")
   }
 }
 
-export default updatePassword;
+export default updatepassword;
