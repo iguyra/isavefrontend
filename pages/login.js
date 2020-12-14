@@ -42,10 +42,9 @@ class login extends React.Component {
         this.setState({ isLogging: false })
         return
       }
-      if (error.response.data.message) {
-        this.setState({ errorMsg: error.response.data.message })
-      }
-      console.log(error.response)
+        this.setState({ errorMsg: error.response.data.status })
+      
+      console.log("error.response",error.response.data.status)
       this.setState({ error: true })
       this.setState({ isLogging: false })
 
