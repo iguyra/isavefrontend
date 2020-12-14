@@ -3,7 +3,7 @@ import Link from "next/link";
 import Router from "next/router";
 import axios from "axios";
 
-import URLbaseAPI from "../../functions/URLbaseAPI"
+import URLbaseAPI from "../../../functions/URLbaseAPI"
 
 
 class updatepassword extends React.Component {
@@ -12,7 +12,6 @@ class updatepassword extends React.Component {
     currentPassword: "xxxxxxxx",
     password: "xxxxxxxx",
     passwordConfirm: "xxxxxxxx",
-    error: false,
     errorMsg: "",
     isUpdating: false
 
