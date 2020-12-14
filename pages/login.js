@@ -42,9 +42,10 @@ class login extends React.Component {
         this.setState({ isLogging: false })
         return
       }
-        this.setState({ errorMsg: error.response.data.status })
-      
-      console.log("error.response",error.response.data.status)
+      if (error.response.data.message) {
+        this.setState({ errorMsg: error.response.data.message })
+      }
+      console.log("error.response",error.response)
       this.setState({ error: true })
       this.setState({ isLogging: false })
 
@@ -55,7 +56,7 @@ class login extends React.Component {
     const {email,password, data, isLogging, error, errorMsg } = this.state;
     console.log(error)
     return (
-      <Layout>
+   
         <section className="siginin" id="signin">
           {error ? <p className="error">{ errorMsg}</p>: ""}
           <Link href="/">
@@ -103,7 +104,6 @@ class login extends React.Component {
             </div>
           </form>
         </section>
-      </Layout>
     );
   }
 }
