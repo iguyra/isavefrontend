@@ -36,7 +36,12 @@ class login extends React.Component {
     Router.push("/");
     this.setState({ data: data });
     } catch (error) {
-      this.setState({ errorMsg: error.response.data.message })
+      if (error.response === "undefined") {
+        this.setState({errorMsg: "something went wrong, try again later"})
+      }
+      if (error.response.data.message) {
+        this.setState({ errorMsg: error.response.data.message })
+      }
       console.log(error.response)
       this.setState({ error: true })
       this.setState({ isLogging: false })
