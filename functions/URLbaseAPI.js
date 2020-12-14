@@ -1,4 +1,4 @@
-let BASE_URL = "http://localhost:3080"
+let BASE_URL = "http://127.0.0.1:3080"
 
     if (process.env_NODE_ENV === "development") {
         BASE_URL = BASE_URL
