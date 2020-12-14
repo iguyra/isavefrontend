@@ -36,7 +36,8 @@ class login extends React.Component {
     Router.push("/");
     this.setState({ data: data });
     } catch (error) {
-      this.setState({errorMsg:error.response.data.message})
+      this.setState({ errorMsg: error.response.data.message })
+      console.log(error.response)
       this.setState({ error: true })
       this.setState({ isLogging: false })
 

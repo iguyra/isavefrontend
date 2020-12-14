@@ -34,6 +34,6 @@ exports.getFrontUser = async (token) => {
 
     return data;
   } catch (err) {
-    console.log(err);
+    console.log(err.response);
   }
 }
