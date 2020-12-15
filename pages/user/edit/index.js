@@ -14,7 +14,10 @@ class edit extends React.Component {
     lastname: "",
     phonenumber: "",
     email: "",
-    gender:""
+    gender: "",
+    isUpdating: false,
+    isUpdated: false,
+    error : false
 
   };
 
@@ -36,8 +39,8 @@ class edit extends React.Component {
     event.preventDefault();
   
     try {
-    const { firstname, lastname,phonenumber } = this.state;
-      this.setState({ isLogging: true })
+      const {isUpdated ,firstname, lastname,phonenumber } = this.state;
+      this.setState({ isUpdating: true })
       const token = localStorage.getItem("token")
       const config = {
         headers: {
@@ -47,9 +50,12 @@ class edit extends React.Component {
       const { data } = await axios.patch(`${URLbaseAPI}/api/users/updateUser`, { firstname, lastname, phonenumber },config);
             console.log("data",data)
 
-    this.setState({ user: data });
+      this.setState({ user: data });
+      this.setState({isUpdating: false})
+      this.setState({isUpdated: true})
     } catch (error) {
       console.log(error.response)
+      this.setState({isUpdating: false})
 
       // if (error.response === "undefined") {
       //    this.setState({ errorMsg: "something went wrong, try again later" })
@@ -61,19 +67,20 @@ class edit extends React.Component {
       // }
       // console.log("error.response",error.response)
       // this.setState({ error: true })
-      // this.setState({ isLogging: false })
+      
 
    }
   };
 
   render() {
-    const { user } = this.state
+    const {isUpdated, user,isUpdating} = this.state
     console.log(user)
     return (
       <section className="useredit" id="signup">
         <div className="secondaryheading">
           <p className="secondaryheading__word">account details</p>
         </div>
+        {isUpdated && <p className="error">user details updated</p>}
         <form className="form" action="" onSubmit={this.handleSubmit}>
           <div className="form__group">
             <label className="form__label" htmlFor="firstname">
@@ -107,7 +114,7 @@ class edit extends React.Component {
             </select>
           </div>
 
-          <button className="form__button">save</button>
+          <button className="form__button">{ isUpdating ? "updating": "save"}</button>
         </form>
       </section>
     );
