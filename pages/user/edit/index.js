@@ -3,13 +3,72 @@ import Link from "next/link";
 import axios from "axios";
 import Header from "../../../components/Heading";
 import Layout from "../../../components/Layout";
+import { getFrontUser } from "../../../functions/fauthContoller";
+import URLbaseAPI from "../../../functions/URLbaseAPI"
+
 
 class edit extends React.Component {
   state = {
     user: {},
+    firstname: "",
+    lastname: "",
+    phonenumber: "",
+    email: "",
+    gender:""
+
+  };
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+    
+  };
+
+  async componentDidMount() {
+    const token = localStorage.getItem("token");
+    const data = await getFrontUser(token);
+    if (data) {
+      this.setState({ user: data.user });
+    }
+    console.log(data)
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    try {
+    const { firstname, lastname,phonenumber } = this.state;
+      this.setState({ isLogging: true })
+      const token = localStorage.getItem("token")
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const { data } = await axios.patch(`${URLbaseAPI}/api/users/updateUser`, { firstname, lastname, phonenumber },config);
+            console.log("data",data)
+
+    this.setState({ user: data });
+    } catch (error) {
+      console.log(error.response)
+
+      // if (error.response === "undefined") {
+      //    this.setState({ errorMsg: "something went wrong, try again later" })
+      //   this.setState({ error: true })
+      //   this.setState({ isLogging: false })
+      // }
+      // if (error.response.data.message) {
+      //   this.setState({ errorMsg: error.response.data.message })
+      // }
+      // console.log("error.response",error.response)
+      // this.setState({ error: true })
+      // this.setState({ isLogging: false })
+
+   }
   };
 
   render() {
+    const { user } = this.state
+    console.log(user)
     return (
       <section className="useredit" id="signup">
         <div className="secondaryheading">
@@ -17,39 +76,34 @@ class edit extends React.Component {
         </div>
         <form className="form" action="" onSubmit={this.handleSubmit}>
           <div className="form__group">
-            <label className="form__label" htmlFor="email">
+            <label className="form__label" htmlFor="firstname">
               first name
             </label>
-            <input className="form__input" type="text" name="firstname" value="Reston" />
+            <input className="form__input" name="firstname" type="text" onChange={this.handleChange} defaultValue={ user.firstname ? user.firstname : ""}/>
           </div>
           <div className="form__group">
-            <label className="form__label" htmlFor="email">
+            <label className="form__label" htmlFor="lastname">
               last name
             </label>
-            <input className="form__input" type="text" name="lastname" value="Anderson" />
+            <input className="form__input" type="text" name="lastname" defaultValue={ user.lastname ? user.lastname : ""} onChange={this.handleChange}/>
           </div>
 
-          <div className="form__group">
-            <label className="form__label" htmlFor="email">
-              email
-            </label>
-            <input className="form__input" type="email" name="email" value="resnderson@gmail.com" />
-          </div>
+       
 
           <div className="form__group">
-            <label className="form__label" htmlFor="email">
+            <label className="form__label" htmlFor="phonenumber">
               phone number
             </label>
-            <input className="form__input" type="number" name="number" value="020000000" />
+            <input className="form__input" type="text" name="phonenumber" defaultValue={user.phonenumber ? user.phonenumber : ""} onChange={this.handleChange}/>
           </div>
 
           <div className="form__group">
-            <label className="form__label" htmlFor="email">
+            <label className="form__label" htmlFor="gender">
               gender
             </label>
-            <select name="" id="">
-              <option value="">male</option>
-              <option value="">female</option>
+            <select name="gender" id=""onChange={this.handleChange}>
+              <option value="male">male</option>
+              <option value="female">female</option>
             </select>
           </div>
 

@@ -1,6 +1,18 @@
 const { default: Layout } = require("../../Layout");
 
-const EmptyCart = () => {
+
+import {useEffect} from "react"
+
+const EmptyCart = ({ user }) => {
+
+
+
+  useEffect(() => {
+  console.log("user", user)
+})
+
+
+  
   return (
     <Layout>
       <section className="cart">
@@ -8,7 +20,16 @@ const EmptyCart = () => {
           <i className="fas fa-shopping-cart"></i>
           <p className="cart__empty">your cart is empty</p>
         </div>
-        <div className="cart__details">
+        
+      {user.email ?  <div className="cart__details">
+          <p className="cart__phrase">
+            start shopping to
+            <a className="cart__login" href="/login">
+              add
+            </a>
+            items in your cart
+          </p>
+        </div>:   <div className="cart__details">
           <p className="cart__phrase">
             have an account ?
             <a className="cart__login" href="/login">
@@ -16,7 +37,7 @@ const EmptyCart = () => {
             </a>
             to view items in your cart
           </p>
-        </div>
+        </div>}
 
         <div className="">{/* <p>{user.name}</p> */}</div>
 
