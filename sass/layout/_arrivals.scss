@@ -43,10 +43,15 @@
 
   &__name {
     color: $color-black;
-    width: 60%;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
   }
 
   &__price {
     color: $color-black;
+    margin-bottom: 1rem;
   }
 }
