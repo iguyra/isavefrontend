@@ -20,8 +20,7 @@ export default class Arrivals extends React.Component {
               <li key={arrival.name} className="arrivals__item">
                 <Link
                   href={`/products/[product]}`}
-                  as={`/products/${arrival._id}`}
-                >
+                  as={`/products/${arrival._id}`}>
                   <a className="arrivals__link">
                     <img src={arrival.image} alt="" className="arrivals__img" />
                     <div className="arrivals__details">
