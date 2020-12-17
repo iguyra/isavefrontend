@@ -27,8 +27,10 @@ export default class Product extends React.Component {
     const { product } = this.state;
 
     return (
-      <section data-aos="fade-in" className="product" id="products">
-        {/* <h4 className="product__phrase">trending this week</h4> */}
+      <section data-aos="fade-in" className="section--product" id="products">
+        <h4 className="product__phrase">featured products</h4>
+
+        <div className="product">
         {/* <div className="product__list"> */}
           {products.map((product) => {
      
@@ -40,6 +42,9 @@ export default class Product extends React.Component {
             <p>all products</p>
           </Link>
         </div>
+        </div>
+        
+      
       </section>
     );
   }

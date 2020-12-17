@@ -1,5 +1,8 @@
-.product {
+.section--product {
   margin-top: 3rem;
+}
+
+.product {
   box-shadow: 1rem 0.2rem 1rem $color-grey-light;
   padding-bottom: 2rem;
   display: grid;
@@ -83,11 +86,14 @@
   }
 
   &__phrase {
-    font-size: 1.6rem;
+    font-size: 2.6rem;
     width: 90%;
     margin: 1rem auto;
     background-color: $color-grey-light;
     padding: 0.5rem;
+    font-weight: lighter;
+    font-style: italic;
+    text-transform: uppercase;
   }
 
   &__addtocart {
