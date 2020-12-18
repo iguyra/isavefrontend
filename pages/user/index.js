@@ -97,19 +97,22 @@ function Heading (props) {
 }
 
 export async function getServerSideProps (context) {
-  // let token;
+  let token;
   // if (typeof window === 'object') {
   //   token = localStorage.getItem("token");
   // }
 
-  console.log("context.req.cookies", context.req.cookies)
+  console.log("context.req.cookies",context.req.cookies.jwt)
   
-  let token = context.req
+  if (context.req.cookies.jwt) {
+    token = context.req.cookies.jwt
+
+  }
 
 
   const config = {
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDc0YjIzYjljNDY1MDAxN2Y3YzE3MSIsImlhdCI6MTYwODMyMjU0NSwiZXhwIjoxNjE2MDk4NTQ1fQ.LTNH6ji2JSEw8mmckhP15YKJCB1XBaXuyRDtL8edhMY`,
+      Authorization: `Bearer ${token}`,
     },
   };
 
