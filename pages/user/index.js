@@ -102,14 +102,14 @@ export async function getServerSideProps (context) {
   //   token = localStorage.getItem("token");
   // }
 
-  console.log("context.req.cookies", context.req.cookies.jwt)
+  console.log("context.req.cookies", context.req.cookies)
   
-  let token = context.req.cookies.jwt
+  let token = context.req
 
 
   const config = {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDc0YjIzYjljNDY1MDAxN2Y3YzE3MSIsImlhdCI6MTYwODMyMjU0NSwiZXhwIjoxNjE2MDk4NTQ1fQ.LTNH6ji2JSEw8mmckhP15YKJCB1XBaXuyRDtL8edhMY`,
     },
   };
 
