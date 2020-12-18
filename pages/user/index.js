@@ -10,7 +10,7 @@ import URLbaseAPI from "../../functions/URLbaseAPI"
 function Heading (props) {
 //  const [user, setUser] = useState()
   const {data} = props
- console.log("user", data.user.email)
+//  console.log("user", data.user.email)
   
 
   const logUserOut = () => {
@@ -96,30 +96,45 @@ function Heading (props) {
   
 }
 
-export async function getServerSideProps (context) {
-  let token;
-  // if (typeof window === 'object') {
-  //   token = localStorage.getItem("token");
-  // }
+// export async function getServerSideProps (context) {
+//   let token;
+//   // if (typeof window === 'object') {
+//   //   token = localStorage.getItem("token");
+//   // }
 
-  console.log("context.req.cookies",context.req.cookies.jwt)
+//   console.log("context.req.cookies",context.req.cookies.jwt)
   
-  if (context.req.cookies.jwt) {
-    token = context.req.cookies.jwt
+//   if (context.req.cookies.jwt) {
+//     token = context.req.cookies.jwt
 
-  }
+//   }
 
+//   const config = {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   };
 
+//   const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+//   return {
+//     props: { data }, // will be passed to the page component as props
+//   };
+// }
+
+Heading.getInitialProps = async (ctx) => {
+
+  let token = ctx.req.cookies.jwt
+  console.log(ctx.req.cookies.jwt)
+  
   const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+    
+      const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
 
-  const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
-  return {
-    props: { data }, // will be passed to the page component as props
-  };
+  return { data }
 }
 
 
