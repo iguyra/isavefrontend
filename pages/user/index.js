@@ -122,9 +122,14 @@ function Heading (props) {
 // }
 
 Heading.getInitialProps = async (ctx) => {
+  let token 
 
-  let token = ctx.req.cookies.jwt
-  console.log(ctx.req.cookies.jwt)
+  if (!process.browser) {
+    console.log("loginf upp")
+     token = ctx.req.cookies.jwt
+
+    console.log(ctx.req.cookies.jwt)
+  }
   
   const config = {
         headers: {
