@@ -6,7 +6,7 @@ import Arrivals from "../components/Arrivals";
 import Footer from "../components/Footer";
 import axios from "axios";
 import fetch from "isomorphic-unfetch";
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 function HomePage({ product }) {
   console.log("product11", product);

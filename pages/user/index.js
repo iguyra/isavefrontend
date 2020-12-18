@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import Link from "next/link";
 import Router from "next/router";
 import axios from "axios";
@@ -7,38 +7,25 @@ import Layout from "../../components/Layout";
 import URLbaseAPI from "../../functions/URLbaseAPI"
 
 
-class Heading extends React.Component {
-  state = {
-    user: {},
-  };
+function Heading (props) {
+//  const [user, setUser] = useState()
+  const {data} = props
+ console.log("user", data.user.email)
+  
 
-  async componentDidMount() {
-    const token = localStorage.getItem("token");
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
-    this.setState({ user: data.user });
-  }
-
-  logUserOut = () => {
+  const logUserOut = () => {
     console.log("clearrrd");
     localStorage.clear();
     Router.push("/");
   };
 
-  render() {
-    const { user } = this.state;
+ 
     return (
       <Layout>
         <section className="user">
           <div className="user__container">
             <div className="user__details">
-              <p className="user__email">{ user.email}</p>
+              <p className="user__email">{data.user.email}</p>
               <p className="user__name">reston anderson</p>
             </div>
             <div className="user__star">
@@ -99,14 +86,38 @@ class Heading extends React.Component {
         </section>
         <div className="logout">
           <Link href="/">
-            <a onClick={this.logUserOut} className="logout__word">
+            <a onClick={logUserOut} className="logout__word">
               logout
             </a>
           </Link>
         </div>
       </Layout>
     );
-  }
+  
 }
+
+export async function getServerSideProps (context) {
+  // let token;
+  // if (typeof window === 'object') {
+  //   token = localStorage.getItem("token");
+  // }
+
+  console.log("context.req.cookies", context.req.cookies.jwt)
+  
+  let token = context.req.cookies.jwt
+
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+  return {
+    props: { data }, // will be passed to the page component as props
+  };
+}
+
 
 export default Heading;
