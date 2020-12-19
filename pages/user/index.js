@@ -19,8 +19,9 @@ import { getFrontUser } from "../../functions/fauthContoller";
 
 function Heading (props) {
 //  const [user, setUser] = useState()
-  const {data} = props
-//  console.log("user", data.user.email)
+  const {user} = props
+  const { email } = user.user
+  console.log(email)
   
 
   const logUserOut = () => {
@@ -35,7 +36,7 @@ function Heading (props) {
         <section className="user">
           <div className="user__container">
             <div className="user__details">
-              {/* <p className="user__email">{data.user.email}</p> */}
+              <p className="user__email">{email}</p>
               <p className="user__name">reston anderson</p>
             </div>
             <div className="user__star">
