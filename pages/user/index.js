@@ -14,6 +14,7 @@ import axios from "axios";
 import Header from "../../components/Heading";
 import Layout from "../../components/Layout";
 import URLbaseAPI from "../../functions/URLbaseAPI"
+import { getFrontUser } from "../../functions/fauthContoller";
 
 
 function Heading (props) {
@@ -34,7 +35,7 @@ function Heading (props) {
         <section className="user">
           <div className="user__container">
             <div className="user__details">
-              <p className="user__email">{data.user.email}</p>
+              {/* <p className="user__email">{data.user.email}</p> */}
               <p className="user__name">reston anderson</p>
             </div>
             <div className="user__star">
@@ -138,16 +139,21 @@ Heading.getInitialProps = async (ctx) => {
     token = ctx.req.cookies.jwt
     console.log(ctx.req.cookies.jwt)
   }
-  
-  const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-    
-      const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
 
-  return { data }
+  let toke= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDc0YjIzYjljNDY1MDAxN2Y3YzE3MSIsImlhdCI6MTYwODM0MzE3MSwiZXhwIjoxNjE2MTE5MTcxfQ.3D8vJbCFe-GZRdMZM3Pjp6GMmVImmJKaD7qtrCjkxY0"
+
+  const user = await getFrontUser(toke)
+  console.log(user)
+  
+  // const config = {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     };
+    
+  //     const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+
+  return { user }
 }
 
 
