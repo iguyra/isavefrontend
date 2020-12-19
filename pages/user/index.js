@@ -132,20 +132,16 @@ function Heading (props) {
 
 Heading.getInitialProps = async (ctx) => {
   let token 
-  let toke 
 
-  if (!process.browser) {
+  if (ctx.req) {
     console.log("loginf upp")
-     token = ctx.req.cookies.jwt
-
-    // console.log(ctx.req.cookies.jwt)
-    console.log(ctx.req.headers.cookie.split("=")[1])
-  toke = ctx.req.headers.cookie.split("=")[1]
+    token = ctx.req.cookies.jwt
+    console.log(ctx.req.cookies.jwt)
   }
   
   const config = {
         headers: {
-          Authorization: `Bearer ${toke}`,
+          Authorization: `Bearer ${token}`,
         },
       };
     
