@@ -25,7 +25,7 @@ function user (props) {
           <div className="user__container">
             <div className="user__details">
               <p className="user__email">{user.email}</p>
-              <p className="user__name">reston anderson</p>
+              <p className="user__name">{user.firstname ? user.firstname : "welcome" }</p>
             </div>
             <div className="user__star">
               <i className="fas fa-user-check"></i>

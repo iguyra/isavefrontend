@@ -47,10 +47,7 @@ export const Pay = ({ cart }) => {
               GH: {cart.totalProductsPrice}
             </p>
           </li>
-          <li className="details__allitems">
-            causal snkeaer GT0
-            <p className="details__allitemprice">GH: 500</p>
-          </li>
+      
           {cart.products &&
             cart.products.map((product) => (
               <li className="details__allitems">
