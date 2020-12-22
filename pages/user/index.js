@@ -96,7 +96,7 @@ function user (props) {
 }
 
 
-export async function getServerSideProps (ctx) {
+user.getInitialProps  = async(ctx) => {
   try {
   const {req} = ctx
   
@@ -111,7 +111,7 @@ export async function getServerSideProps (ctx) {
   const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
   
   return {
-        props: { user: data.user }, // will be passed to the page component as props
+         user: data.user // will be passed to the page component as props
       }
   } catch (err) {
     console.log("errorr",err)
