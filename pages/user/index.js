@@ -1,12 +1,3 @@
-// import React from "react";
-// import Link from "next/link";
-// import Router from "next/router";
-// import axios from "axios";
-// import Header from "../../components/Heading";
-// import Layout from "../../components/Layout";
-// import URLbaseAPI from "../../functions/URLbaseAPI"
-
-
 import React, {useState,useEffect} from "react";
 import Link from "next/link";
 import Router from "next/router";
@@ -14,19 +5,12 @@ import axios from "axios";
 import Header from "../../components/Heading";
 import Layout from "../../components/Layout";
 import URLbaseAPI from "../../functions/URLbaseAPI"
-import { getFrontUser,getClientSideToken, protectedd } from "../../functions/fauthContoller";
+import { getFrontUser,getServerSideToken,getClientSideToken, protectedd } from "../../functions/fauthContoller";
 
 
 function user (props) {
-//  const [user, setUser] = useState()
   let { user } = props
-  let email;
-
-  
- console.log(user)
-  // const { email } = user.user
-  
-
+ 
   const logUserOut = () => {
     console.log("clearrrd");
     localStorage.clear();
@@ -111,33 +95,23 @@ function user (props) {
 }
 
 
-user.getInitialProps = async (ctx) => {
+export async function getServerSideProps (ctx) {
   try {
-
+  const {req} = ctx
   
-  let tken = ctx.req ? ctx.req.cookies.token : getClientSideToken()
-    
+  let token = req ? getServerSideToken(req) : getClientSideToken()   
 
   const config = {
     headers: {
-      Authorization: `Bearer ${tken}`,
+      Authorization: `Bearer ${token}`,
     },
     };
 
-
   const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
-
-    // console.log("hello", ctx.req ? ctx.req.cookies.jwt : data)
-    
-   const isBrowser = () => typeof window !== 'undefined' && window.document !== undefined;
-
-    console.log(isBrowser())
-    
-    const dataa = {
-      email: "admin@admin.com"
-    }
-// console.log("data",data)
-  return { user: data.user }
+  
+  return {
+        props: { user: data.user }, // will be passed to the page component as props
+      }
   } catch (err) {
     console.log("errorr",err)
  }
@@ -150,129 +124,7 @@ user.getInitialProps = async (ctx) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export async function getServerSideProps (context) {
-//   let token;
-//   // if (typeof window === 'object') {
-//   //   token = localStorage.getItem("token");
-//   // }
-
-//   console.log("context.req.cookies",context.req.cookies.jwt)
-  
-//   if (context.req.cookies.jwt) {
-//     token = context.req.cookies.jwt
-
-//   }
-
-//   const config = {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   };
-
-//   const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
-//   return {
-//     props: { data }, // will be passed to the page component as props
-//   };
-// }
-
-// user.getInitialProps = async (ctx) => {
-//   let token 
-   
-//   token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDc0YjIzYjljNDY1MDAxN2Y3YzE3MSIsImlhdCI6MTYwODM0MzE3MSwiZXhwIjoxNjE2MTE5MTcxfQ.3D8vJbCFe-GZRdMZM3Pjp6GMmVImmJKaD7qtrCjkxY0"
-  
-
-//   let toke = ctx.req ? ctx.req.cookies.jwt : getClientSideToken()
-
-
-//   const  data = await getFrontUser(toke) 
-
-// console.log(toke)
-// console.log("data",data, )
-
-//   return { user: data }
-// }
-
-
 export default user;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

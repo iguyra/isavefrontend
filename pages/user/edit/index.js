@@ -3,7 +3,7 @@ import Link from "next/link";
 import axios from "axios";
 import Header from "../../../components/Heading";
 import Layout from "../../../components/Layout";
-import { getFrontUser } from "../../../functions/fauthContoller";
+import { getFrontUser,getServerSideToken,getClientSideToken } from "../../../functions/fauthContoller";
 import URLbaseAPI from "../../../functions/URLbaseAPI"
 
 
@@ -21,19 +21,20 @@ class edit extends React.Component {
 
   };
 
+
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
     
   };
 
-  async componentDidMount() {
-    const token = localStorage.getItem("token");
-    const data = await getFrontUser(token);
-    if (data) {
-      this.setState({ user: data.user });
-    }
-    console.log(data)
-  }
+  // async componentDidMount() {
+  //   const token = localStorage.getItem("token");
+  //   const data = await getFrontUser(token);
+  //   if (data) {
+  //     this.setState({ user: data.user });
+  //   }
+  //   console.log(data)
+  // }
 
   handleSubmit = async (event) => {
     event.preventDefault();
@@ -48,7 +49,6 @@ class edit extends React.Component {
         },
       };
       const { data } = await axios.patch(`${URLbaseAPI}/api/users/updateUser`, { firstname, lastname, phonenumber },config);
-            console.log("data",data)
 
       this.setState({ user: data });
       this.setState({isUpdating: false})
@@ -73,8 +73,9 @@ class edit extends React.Component {
   };
 
   render() {
-    const {isUpdated, user,isUpdating} = this.state
-    console.log(user)
+    const { user} = this.props
+
+    const {isUpdated, isUpdating} = this.state
     return (
       <section className="useredit" id="signup">
         <div className="secondaryheading">
@@ -120,5 +121,30 @@ class edit extends React.Component {
     );
   }
 }
+
+
+export async function getServerSideProps (ctx) {
+  try {
+  const {req} = ctx
+  
+  let token = req ? getServerSideToken(req) : getClientSideToken()   
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    };
+
+  const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+  
+  return {
+        props: { user: data.user }, // will be passed to the page component as props
+      }
+  } catch (err) {
+    console.log("errorr",err)
+ }
+}
+
+
 
 export default edit;

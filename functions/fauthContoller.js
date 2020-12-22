@@ -33,11 +33,6 @@ exports.getFrontUser = async (token) => {
   }
 }
 
-exports.getBackUser = (token) => {
-
-  
-
-}
 
 exports.getClientSideToken = () => {
   if (typeof window !== "undefined") {
@@ -46,3 +41,11 @@ exports.getClientSideToken = () => {
   }
   return ""
 }
+exports.getServerSideToken = (req) => {
+  if (typeof window === "undefined") {
+   const token = req ? req.cookies.token : ""
+    return token
+  }
+  return ""
+}
+
