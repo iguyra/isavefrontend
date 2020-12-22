@@ -9,7 +9,6 @@ import fetch from "isomorphic-unfetch";
 axios.defaults.withCredentials = true;
 
 function HomePage({ product }) {
-  console.log("product11", product);
   return (
     <Layout>
       <Categories />

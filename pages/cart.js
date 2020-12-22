@@ -1,6 +1,7 @@
 import React from "react";
+import axios from "axios"
 import Layout from "../components/Layout";
-import { getFrontUser, getUser } from "../functions/fauthContoller";
+import { URLbaseAPI,getFrontUser, getClientSideToken,getServerSideToken } from "../functions/fauthContoller";
 import CartWithItem from "../components/cart/cartpage/cartWithItem";
 import EmptyCart from "../components/cart/cartpage/EmptyCart";
 
@@ -30,4 +31,15 @@ class cart extends React.Component {
     return <Layout>{cart.totalProductsCount >= 1 ? <CartWithItem /> : <EmptyCart user={user} />}</Layout>;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
 export default cart;
