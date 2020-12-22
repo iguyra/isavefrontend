@@ -14,14 +14,17 @@ import axios from "axios";
 import Header from "../../components/Heading";
 import Layout from "../../components/Layout";
 import URLbaseAPI from "../../functions/URLbaseAPI"
-import { getFrontUser } from "../../functions/fauthContoller";
+import { getFrontUser,getClientSideToken, protectedd } from "../../functions/fauthContoller";
 
 
-function Heading (props) {
+function user (props) {
 //  const [user, setUser] = useState()
-  const {user} = props
-  const { email } = user.user
-  console.log(email)
+  let { user } = props
+  let email;
+
+  
+ console.log(user)
+  // const { email } = user.user
   
 
   const logUserOut = () => {
@@ -36,7 +39,7 @@ function Heading (props) {
         <section className="user">
           <div className="user__container">
             <div className="user__details">
-              <p className="user__email">{email}</p>
+              <p className="user__email">{user.email}</p>
               <p className="user__name">reston anderson</p>
             </div>
             <div className="user__star">
@@ -107,6 +110,65 @@ function Heading (props) {
   
 }
 
+
+user.getInitialProps = async (ctx) => {
+  try {
+
+  
+  let tken = ctx.req ? ctx.req.cookies.token : getClientSideToken()
+    
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${tken}`,
+    },
+    };
+
+
+  const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+
+    // console.log("hello", ctx.req ? ctx.req.cookies.jwt : data)
+    
+   const isBrowser = () => typeof window !== 'undefined' && window.document !== undefined;
+
+    console.log(isBrowser())
+    
+    const dataa = {
+      email: "admin@admin.com"
+    }
+// console.log("data",data)
+  return { user: data.user }
+  } catch (err) {
+    console.log("errorr",err)
+ }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // export async function getServerSideProps (context) {
 //   let token;
 //   // if (typeof window === 'object') {
@@ -132,37 +194,25 @@ function Heading (props) {
 //   };
 // }
 
-Heading.getInitialProps = async (ctx) => {
-  let token 
-
-  if (ctx.req) {
-    console.log("loginf upp")
-    token = ctx.req.cookies.jwt
-    console.log(ctx.req.cookies.jwt)
-  }
-
-  let toke= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDc0YjIzYjljNDY1MDAxN2Y3YzE3MSIsImlhdCI6MTYwODM0MzE3MSwiZXhwIjoxNjE2MTE5MTcxfQ.3D8vJbCFe-GZRdMZM3Pjp6GMmVImmJKaD7qtrCjkxY0"
-
-  const user = await getFrontUser(toke)
-  console.log(user)
+// user.getInitialProps = async (ctx) => {
+//   let token 
+   
+//   token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDc0YjIzYjljNDY1MDAxN2Y3YzE3MSIsImlhdCI6MTYwODM0MzE3MSwiZXhwIjoxNjE2MTE5MTcxfQ.3D8vJbCFe-GZRdMZM3Pjp6GMmVImmJKaD7qtrCjkxY0"
   
-  // const config = {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     };
-    
-  //     const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
 
-  return { user }
-}
+//   let toke = ctx.req ? ctx.req.cookies.jwt : getClientSideToken()
 
 
-export default Heading;
+//   const  data = await getFrontUser(toke) 
 
+// console.log(toke)
+// console.log("data",data, )
 
+//   return { user: data }
+// }
 
 
+export default user;
 
 
 
@@ -230,7 +280,11 @@ export default Heading;
 
 
 
-// class Heading extends React.Component {
+
+
+
+
+// class user extends React.Component {
 //   state = {
 //     user: {},
 //   };
@@ -332,4 +386,4 @@ export default Heading;
 //   }
 // }
 
-// export default Heading;
+// export default user;

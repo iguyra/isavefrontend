@@ -108,4 +108,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default withRouter(productpage);
+export default productpage;

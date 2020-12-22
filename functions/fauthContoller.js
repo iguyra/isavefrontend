@@ -5,9 +5,6 @@ const URLbaseAPI = require("../functions/URLbaseAPI")
 const { promisify } = require("util");
 
 
-
-
-
 exports.getUser = (req, res) => {
   console.log("protected accesed");
 
@@ -24,9 +21,7 @@ exports.getFrontUser = async (token) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    };
-    console.log(URLbaseAPI.default,"getfrontuser")
-
+    };    
     const { data } = await axios.get(
       `${URLbaseAPI.default}/api/users/cart`,
       config
@@ -34,6 +29,20 @@ exports.getFrontUser = async (token) => {
 
     return data;
   } catch (err) {
-    console.log(err.response);
+    console.log("error",err.response.data.message);
   }
+}
+
+exports.getBackUser = (token) => {
+
+  
+
+}
+
+exports.getClientSideToken = () => {
+  if (typeof window !== "undefined") {
+   const token = localStorage.getItem("token")
+    return token
+  }
+  return ""
 }
