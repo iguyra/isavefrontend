@@ -24,7 +24,7 @@ function user (props) {
         <section className="user">
           <div className="user__container">
             <div className="user__details">
-              {/* <p className="user__email">{user.email}</p> */}
+              <p className="user__email">{user.email}</p>
               <p className="user__name">reston anderson</p>
             </div>
             <div className="user__star">
@@ -96,7 +96,27 @@ function user (props) {
 }
 
 
+export async function getServerSideProps (ctx) {
+  try {
+  const {req} = ctx
+  
+  let token = req ? getServerSideToken(req) : getClientSideToken()   
 
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    };
+
+  const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+  
+  return {
+        props: { user: data.user }, // will be passed to the page component as props
+      }
+  } catch (err) {
+    console.log("errorr",err)
+ }
+}
 
 
 
