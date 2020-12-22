@@ -5,7 +5,7 @@ import axios from "axios";
 import Header from "../../components/Heading";
 import Layout from "../../components/Layout";
 import URLbaseAPI from "../../functions/URLbaseAPI"
-import { getFrontUser,getServerSideToken,getClientSideToken, protectedd } from "../../functions/fauthContoller";
+import { getServerSideToken,getClientSideToken} from "../../functions/fauthContoller";
 
 
 function user (props) {
