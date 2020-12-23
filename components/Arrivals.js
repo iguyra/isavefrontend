@@ -11,7 +11,7 @@ export default class Arrivals extends React.Component {
   }
   render() {
     return (
-      <section data-aos="fade-up" className="arrivals">
+      <section data-aos="fade-left" className="arrivals">
         <h4 className="product__phrase">new arrivals</h4>
 
         <ul className="arrivals__list">
