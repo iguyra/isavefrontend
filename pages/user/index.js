@@ -25,7 +25,7 @@ function user (props) {
           <div className="user__container">
             <div className="user__details">
               <p className="user__email">{user.email}</p>
-              <p className="user__name">{user.firstname ? user.firstname : "welcome" }</p>
+              <p className="user__name">{user.firstname ? `welcome, ${user.firstname}` : "welcome" }</p>
             </div>
             <div className="user__star">
               <i className="fas fa-user-check"></i>
@@ -48,7 +48,7 @@ function user (props) {
             </li>
             <li className="account__item">
               <div className="account__first">
-                <i className="fab fa-first-order"></i>
+                <i className="far fa-heart"></i>
                 <Link href="/saveditems">
                   <a className="account__orders">saved items</a>
                 </Link>
@@ -64,7 +64,7 @@ function user (props) {
           <ul className="account__list">
             <li className="account__item">
               <div className="account__first">
-                <i className="fab fa-first-order"></i>
+                <i class="fas fa-info-circle"></i>
                 <Link href="/user/edit">
                   <a className="account__orders">details</a>
                 </Link>
@@ -74,8 +74,7 @@ function user (props) {
             </li>
             <li className="account__item">
               <div className="account__first">
-                <i class="fab fa-first-order"></i>
-                <Link href="/user/updatepassword">
+              <i class="fas fa-key"></i>                <Link href="/user/updatepassword">
                   <a className="account__orders">change paswword</a>
                 </Link>
               </div>
