@@ -27,7 +27,7 @@ export default class Product extends React.Component {
     const { product } = this.state;
 
     return (
-      <section data-aos="fade-up" className="section--product" id="products">
+      <section data-aos="fade-in" className="section--product" id="products">
         <h4 className="product__phrase">featured products</h4>
 
         <div className="product">
