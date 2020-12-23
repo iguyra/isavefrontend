@@ -1,7 +1,10 @@
 import Link from "next/link";
 import AddToCartButton from "./cart/AddToCartButton";
+import Aos from "aos";
+
 
 const Card = ({ product }) => {
+
   return (
     <div className="product__item">
       <Link key={product.price} href={`/products/[product]}`} as={`/products/${product._id}`}>
