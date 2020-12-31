@@ -1,6 +1,8 @@
 import React from "react";
 import Router from "next/router";
 import axios from "axios";
+import Loader from 'react-loader-spinner'
+
 import Aos from "aos";
 import "aos/dist/aos.css"
 import Layout from "../components/Layout";
@@ -90,7 +92,8 @@ class login extends React.Component {
               />
             </label>
 
-            <button disabled={isLogging}  className="siginin__button">{ isLogging ? "logging...": "login"}</button>
+            <button disabled={isLogging}  className="siginin__button">{ isLogging ? <Loader type="Circles" color="#00BFFF" height={12}
+         width={12}/>: "login"}</button>
 
             <div className="siginin__details">
               <Link href="/forgotpassword">
