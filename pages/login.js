@@ -92,11 +92,10 @@ class login extends React.Component {
               />
             </label>
 
-            <button disabled={isLogging}  className="siginin__button">{ isLogging ? <Loader type="Circles" color="#00BFFF" height={12}
-         width={12}/>: "login"}</button>
+            <button disabled={isLogging}  className="siginin__button">{ isLogging ? "logging": "login"}</button>
 
             <div className="siginin__details">
-              <Link href="/forgotpassword">
+              <Link href="/forgotpassword"> 
                 <a className="siginin__passwordforgot">forgot your password ?</a>
               </Link>
               <Link  href="/signup">
