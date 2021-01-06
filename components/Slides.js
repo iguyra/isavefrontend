@@ -17,7 +17,7 @@ export default class Slides extends React.Component {
                 shop now
               </a>
             </p>
-            <p className="slides__bottomtext">
+            <p data-aos="zoom-out" className="slides__bottomtext">
               flash sale<span className="slides__textspan">explore your taste</span>{" "}
             </p>
           </li>
