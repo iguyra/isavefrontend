@@ -95,12 +95,20 @@ class Heading extends React.Component {
        
         <section className={menuActive ? "navigation" : "navigation off"} id="navigation">
           <div className="navigation__container">
-          <div className="navigation__item">
-        <a className="navigation__list">about us</a>
-        <a className="navigation__list"
+            <div className="navigation__item">
+            <Link href="/about-us">
+              <a className="navigation__list"
+          ><p>about us</p>
+          <i className="far fa-address-card"></i
+        ></a>
+          </Link>
+              <Link href="/contact">
+              <a className="navigation__list"
           ><p>contact</p>
           <i className="far fa-address-card"></i
         ></a>
+          </Link>
+        
         <a className="navigation__list"
           ><p className="navigation__callus">
             call us <span className="call-green"></span>

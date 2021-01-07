@@ -1,38 +1,40 @@
 //abstract
-@import "abstracts/variables";
-@import "abstracts/mixins";
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
 
 //base
-@import "base/base";
+@import 'base/base';
 
 //layout
-@import "layout/header";
-@import "layout/navigation";
-@import "layout/slides";
-@import "layout/product";
-@import "layout/componentTester";
-@import "layout/arrivals";
-@import "layout/collection";
-@import "layout/footer";
+@import 'layout/header';
+@import 'layout/navigation';
+@import 'layout/slides';
+@import 'layout/product';
+@import 'layout/componentTester';
+@import 'layout/arrivals';
+@import 'layout/collection';
+@import 'layout/footer';
 
 //components
-@import "components/icons";
-@import "components/searchbar";
-@import "components/categories";
-@import "components/cart";
-@import "components/cartwithItem";
-@import "components/steps";
-@import "components/select";
-@import "components/module";
-@import "components/form";
-@import "components/search";
-@import "components/error";
-@import "components/loader";
+@import 'components/icons';
+@import 'components/searchbar';
+@import 'components/categories';
+@import 'components/cart';
+@import 'components/cartwithItem';
+@import 'components/steps';
+@import 'components/select';
+@import 'components/module';
+@import 'components/form';
+@import 'components/search';
+@import 'components/error';
+@import 'components/loader';
 
 //pages
-@import "pages/login";
-@import "pages/signUp";
-@import "pages/productpage";
-@import "pages/user";
-@import "pages/useredit";
-@import "pages/allproducts";
+@import 'pages/login';
+@import 'pages/signUp';
+@import 'pages/productpage';
+@import 'pages/user';
+@import 'pages/useredit';
+@import 'pages/allproducts';
+@import 'pages/aboutUs';
+@import 'pages/contact';

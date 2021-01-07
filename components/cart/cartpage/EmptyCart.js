@@ -23,11 +23,11 @@ const EmptyCart = ({ user }) => {
         
       {user.email ?  <div className="cart__details">
           <p className="cart__phrase">
-            start shopping to
-            <a className="cart__login" href="/login">
-              add
-            </a>
-            items in your cart
+            start shopping to 
+             <a className="cart__login" href="/">
+               add
+            </a> 
+             items in your cart
           </p>
         </div>:   <div className="cart__details">
           <p className="cart__phrase">

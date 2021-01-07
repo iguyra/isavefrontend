@@ -1,22 +1,35 @@
 .form {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   margin-top: 2rem;
+  background-color: $color-grey-light-1;
+  padding: 2rem;
 
   &__group {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
+    height: 100%;
   }
   &__label {
     font-size: 1.2rem;
     text-transform: capitalize;
+    text-align: start;
+    letter-spacing: 1px;
   }
 
   &__input {
     padding: 1rem;
     border: none;
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
     background-color: $color-grey-light-1;
+    border-bottom: 1px solid $color-grey-light;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   &__button {
