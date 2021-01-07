@@ -1,6 +1,7 @@
 .error {
-  background-color: $color-grey-light-1;
-  padding: 2rem;
+  background: linear-gradient(to bottom left, #fff6f6 40%, #fff6f6 100%);
+  padding: 1rem;
   font-size: 1.4rem;
-  border: 1px solid $color-grey-light;
+  border: 1px solid #d02e2e;
+  color: #d02e2e;
 }
