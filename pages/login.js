@@ -1,13 +1,14 @@
 import React from "react";
 import Router from "next/router";
 import axios from "axios";
-import Loader from 'react-loader-spinner'
+import Loader1 from 'react-loader-spinner'
 
 import Aos from "aos";
 import "aos/dist/aos.css"
 import Layout from "../components/Layout";
 import Link from "next/link";
 import URLbaseAPI from "../functions/URLbaseAPI"
+import Loader from "../components/Loader/Loader"
 
 class login extends React.Component {
   state = {
@@ -92,7 +93,7 @@ class login extends React.Component {
               />
             </label>
 
-            <button disabled={isLogging}  className="siginin__button">{ isLogging ? "logging": "login"}</button>
+            <button disabled={isLogging}  className="siginin__button">{ isLogging ? <Loader/>: "login"}</button>
 
             <div className="siginin__details">
               <Link href="/forgotpassword"> 
