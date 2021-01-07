@@ -8,7 +8,7 @@ class Heading extends React.Component {
 
   state = {
     user: {},
-    headerActive: "header",
+    headerActive: false,
     menuActive: false,
  
   };
@@ -31,10 +31,10 @@ class Heading extends React.Component {
 
   handleBackground = () => {
     if (window.scrollY > 96) {
-      this.setState({ headerActive: "header active" });   
+      this.setState({ headerActive: true });   
 
     } else {
-      this.setState({ headerActive: "header" });
+      this.setState({ headerActive: false });
     }
   };
 
@@ -45,7 +45,7 @@ class Heading extends React.Component {
   render() {
     const { user, headerActive,menuActive ,navigation} = this.state;
     return (
-      <section className={headerActive}>
+      <section className={headerActive ? "header active": "header"}>
         <div className="header__details">
           <div onClick={this.openMenu} className={menuActive ? "header__menu active" : "header__menu"}></div>
           <Link href="/">

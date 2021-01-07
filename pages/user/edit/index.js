@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import axios from "axios";
+import Router from "next/router";
+
 import Header from "../../../components/Heading";
 import Layout from "../../../components/Layout";
 import { getFrontUser,getServerSideToken,getClientSideToken } from "../../../functions/fauthContoller";
@@ -52,7 +54,9 @@ class edit extends React.Component {
 
       this.setState({ user: data });
       this.setState({isUpdating: false})
-      this.setState({isUpdated: true})
+      this.setState({ isUpdated: true })
+      Router.push("/user");
+
     } catch (error) {
       console.log(error.response)
       this.setState({isUpdating: false})
@@ -73,7 +77,7 @@ class edit extends React.Component {
   };
 
   render() {
-    const { user} = this.props
+    const { user,firstname, lastname,phonenumber} = this.props
 
     const {isUpdated, isUpdating} = this.state
     return (
@@ -87,13 +91,14 @@ class edit extends React.Component {
             <label className="form__label" htmlFor="firstname">
               first name
             </label>
-            <input className="form__input" name="firstname" type="text" onChange={this.handleChange} defaultValue={ user.firstname ? user.firstname : ""}/>
+            <input className="form__input" name="firstname" type="text" onChange={this.handleChange} defaultValue={user.firstname} />  
+            
           </div>
           <div className="form__group">
             <label className="form__label" htmlFor="lastname">
               last name
             </label>
-            <input className="form__input" type="text" name="lastname" defaultValue={ user.lastname ? user.lastname : ""} onChange={this.handleChange}/>
+            <input className="form__input" type="text" name="lastname" defaultValue={ user.lastname} onChange={this.handleChange}/>
           </div>
 
        
