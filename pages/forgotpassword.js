@@ -2,6 +2,7 @@ import React from "react";
 import Router from "next/router";
 import axios from "axios";
 import Layout from "../components/Layout";
+import Loader from "../components/Loader/Loader";
 import Link from "next/link";
 import URLbsaeAPI from "../functions/URLbaseAPI"
 
@@ -69,7 +70,7 @@ class forgotpassword extends React.Component {
               />
             </label>
            
-          <button  className="siginin__button">{ isSubmiting ? "submiting...": "submit"}</button>
+          <button  className="siginin__button">{ isSubmiting ? <Loader/>: "submit"}</button>
 
             <div className="siginin__details">
               
