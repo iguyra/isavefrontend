@@ -86,4 +86,5 @@ console.log("password updated")
   }
 }
 
+
 export default updatepassword;

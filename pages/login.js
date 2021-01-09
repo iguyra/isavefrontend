@@ -8,7 +8,9 @@ import "aos/dist/aos.css"
 import Layout from "../components/Layout";
 import Link from "next/link";
 import URLbaseAPI from "../functions/URLbaseAPI"
+import { getFrontUser} from "../functions/fauthContoller";
 import Loader from "../components/Loader/Loader"
+import Redirect from "../components/Redirect"
 
 class login extends React.Component {
   state = {
@@ -17,10 +19,26 @@ class login extends React.Component {
     data: {},
     isLogging: false,
     error: false,
-    errorMsg: ""
+    errorMsg: "",
+    shouldRedirect: false
   };
 
 
+  async componentDidMount() {
+    const token = localStorage.getItem("token");
+
+    const data = await getFrontUser(token);
+    if (data) {
+      this.setState({ shouldRedirect: true });
+    }
+
+console.log(token)
+    if (this.state.shouldRedirect) {
+      Router.push("/")
+    }
+
+    console.log(this.state.shouldRedirect)
+  }
 
   
 
@@ -62,7 +80,7 @@ class login extends React.Component {
    
         <section className="siginin" id="signin">
           {error ? <p className="error">{ errorMsg}</p>: ""}
-          <Link href="/">
+          <Link href="/user">
             <a className="siginin__sitename" id="sitename">
               iguyra <span>&larr;</span>
             </a>

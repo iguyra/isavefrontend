@@ -5,7 +5,7 @@ import axios from "axios";
 import Header from "../../components/Heading";
 import Layout from "../../components/Layout";
 import URLbaseAPI from "../../functions/URLbaseAPI"
-import { getServerSideToken,getClientSideToken,  } from "../../functions/fauthContoller";
+import { getServerSideToken,getClientSideToken, redirectPage } from "../../functions/fauthContoller";
 
 
 
@@ -99,7 +99,9 @@ user.getInitialProps  = async(ctx) => {
   try {
   const {req} = ctx
   
-  let token = req ? getServerSideToken(req) : getClientSideToken()   
+    let token = req ? getServerSideToken(req) : getClientSideToken()  
+  
+    
 
   const config = {
     headers: {
@@ -107,13 +109,14 @@ user.getInitialProps  = async(ctx) => {
     },
     };
 
-  const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+    const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+    console.log(data)
   
   return {
-         user: data.user // will be passed to the page component as props
+         user: data.user ? data.user : {} // will be passed to the page component as props
       }
   } catch (err) {
-    console.log("errorr",err)
+   return redirectPage(ctx,err)
  }
 }
 

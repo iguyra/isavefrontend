@@ -12,7 +12,8 @@ class cart extends React.Component {
   };
 
   async componentDidMount() {
-    const token = localStorage.getItem("token");
+    try {
+      const token = localStorage.getItem("token");
     const cart = JSON.parse(localStorage.getItem("isavecart"));
 
     if (cart) {
@@ -23,7 +24,10 @@ class cart extends React.Component {
     if (data) {
       this.setState({ user: data.user });
     }
+  }catch(err) {
+    console.log("error",err.response)
   }
+  } 
 
   render() {
     const { user, cart } = this.state;

@@ -1,11 +1,20 @@
-const axios = require("axios");
+import axios from "axios";
 // const User = require("../");
-const URLbaseAPI = require("../functions/URLbaseAPI")
-
-const { promisify } = require("util");
+import Router from "next/router"
 
 
-exports.getUser = (req, res) => {
+import URLbaseAPI from "../functions/URLbaseAPI"
+
+// const axios = require("axios");
+// // const User = require("../");
+// const Router = require("next/router")
+
+// const URLbaseAPI = require("../functions/URLbaseAPI")
+
+
+
+
+export function getUser(req, res)  {
   console.log("protected accesed");
 
   const user = req.user;
@@ -15,7 +24,7 @@ exports.getUser = (req, res) => {
   });
 };
 
-exports.getFrontUser = async (token) => {
+export async function getFrontUser(token)  {
   try {
     const config = {
       headers: {
@@ -29,19 +38,19 @@ exports.getFrontUser = async (token) => {
 
     return data;
   } catch (err) {
-    console.log("error",err.response.data.message);
+    console.log("error",err.response);
   }
 }
 
 
-exports.getClientSideToken = () => {
+export function getClientSideToken () {
   if (typeof window !== "undefined") {
    const token = localStorage.getItem("token")
     return token
   }
   return ""
 }
-exports.getServerSideToken = (req) => {
+export function getServerSideToken (req) {
   if (typeof window === "undefined") {
    const token = req ? req.cookies.token : ""
     return token
@@ -49,3 +58,19 @@ exports.getServerSideToken = (req) => {
   return ""
 }
 
+export function redirectPage (ctx, err) {
+  
+  if (ctx) {
+    if (err.response.data.error.statusCode === 500) {
+      const { req, res } = ctx
+      if (req) {
+        res.writeHead(301, { location: "/login" });
+        return res.end();
+      } else {
+        return Router.push("/login")
+      }
+    }
+  }
+
+
+}
