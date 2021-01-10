@@ -138,13 +138,10 @@ login.getInitialProps  = async(ctx) => {
       if (typeof window === "object") {
        return Router.push("/");
       } else {
-
         if (req) {
           res.writeHead(301, { location: "/" });
-        return res.end();
-        }
-
-        
+          return res.end();
+        }        
       }
    }
   
