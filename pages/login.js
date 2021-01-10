@@ -8,7 +8,7 @@ import "aos/dist/aos.css"
 import Layout from "../components/Layout";
 import Link from "next/link";
 import URLbaseAPI from "../functions/URLbaseAPI"
-import { getFrontUser} from "../functions/fauthContoller";
+import { getFrontUser, redirectPage, getServerSideToken,getClientSideToken} from "../functions/fauthContoller";
 import Loader from "../components/Loader/Loader"
 import Redirect from "../components/Redirect"
 
@@ -24,21 +24,21 @@ class login extends React.Component {
   };
 
 
-  async componentDidMount() {
-    const token = localStorage.getItem("token");
+//   async componentDidMount() {
+//     const token = localStorage.getItem("token");
 
-    const data = await getFrontUser(token);
-    if (data) {
-      this.setState({ shouldRedirect: true });
-    }
+//     const data = await getFrontUser(token);
+//     if (data) {
+//       this.setState({ shouldRedirect: true });
+//     }
 
-console.log(token)
-    if (this.state.shouldRedirect) {
-      Router.push("/")
-    }
+// console.log(token)
+//     if (this.state.shouldRedirect) {
+//       Router.push("/")
+//     }
 
-    console.log(this.state.shouldRedirect)
-  }
+//     console.log(this.state.shouldRedirect)
+//   }
 
   
 
@@ -127,6 +127,38 @@ console.log(token)
         </section>
     );
   }
+}
+login.getInitialProps  = async(ctx) => {
+  try {
+  const {req,res} = ctx
+  
+    let token = req ? getServerSideToken(req) : getClientSideToken()  
+  
+    if (token) {
+      if (typeof window === "object") {
+       return Router.push("/");
+      } else {
+
+        if (req) {
+          res.writeHead(301, { location: "/" });
+        return res.end();
+        }
+
+        
+      }
+   }
+  
+  return {
+         user: {} // will be passed to the page component as props
+      }
+  } catch (err) {
+    if (err) {
+      if (typeof window === "object") {
+        console.log("browser object")
+         Router.push("/forgotpassword");
+     }
+    }
+ }
 }
 
 export default login;

@@ -30,15 +30,16 @@ export async function getFrontUser(token)  {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    };    
+    };   
+    console.log(URLbaseAPI.default)
     const { data } = await axios.get(
-      `${URLbaseAPI.default}/api/users/cart`,
+      `${URLbaseAPI}/api/users/cart`,
       config
     );
 
     return data;
   } catch (err) {
-    console.log("error",err.response);
+    console.log(err.response.data.message)
   }
 }
 

@@ -17,7 +17,8 @@ class Heading extends React.Component {
     try {
      
     const token = localStorage.getItem("token");
-    const data = await getFrontUser(token);
+      const data = await getFrontUser(token);
+    
     if (data) {
       this.setState({ user: data.user });
       }
