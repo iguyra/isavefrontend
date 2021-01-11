@@ -1,9 +1,14 @@
-import React from "react";
-import axios from "axios"
-import Layout from "../components/Layout";
-import { URLbaseAPI,getFrontUser, getClientSideToken,getServerSideToken } from "../functions/fauthContoller";
-import CartWithItem from "../components/cart/cartpage/cartWithItem";
-import EmptyCart from "../components/cart/cartpage/EmptyCart";
+import React from 'react';
+import axios from 'axios';
+import Layout from '../components/Layout';
+import {
+  URLbaseAPI,
+  getFrontUser,
+  getClientSideToken,
+  getServerSideToken,
+} from '../functions/fauthContoller';
+import CartWithItem from '../components/cart/cartpage/cartWithItem';
+import EmptyCart from '../components/cart/cartpage/EmptyCart';
 
 class cart extends React.Component {
   state = {
@@ -13,37 +18,35 @@ class cart extends React.Component {
 
   async componentDidMount() {
     try {
-      const token = localStorage.getItem("token");
-    const cart = JSON.parse(localStorage.getItem("isavecart"));
+      const token = localStorage.getItem('token');
+      const cart = JSON.parse(localStorage.getItem('isavecart'));
 
-    if (cart) {
-      this.setState({ cart });
-    }
+      if (cart) {
+        this.setState({ cart });
+      }
 
-    const data = await getFrontUser(token);
-    if (data) {
-      this.setState({ user: data.user });
+      const data = await getFrontUser(token);
+      if (data) {
+        this.setState({ user: data.user });
+      }
+    } catch (err) {
+      console.log('error', err.response);
     }
-  }catch(err) {
-    console.log("error",err.response)
   }
-  } 
 
   render() {
     const { user, cart } = this.state;
 
-    return <Layout>{cart.totalProductsCount >= 1 ? <CartWithItem /> : <EmptyCart user={user} />}</Layout>;
+    return (
+      <Layout>
+        {cart.totalProductsCount >= 1 ? (
+          <CartWithItem />
+        ) : (
+          <EmptyCart user={user} />
+        )}
+      </Layout>
+    );
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 export default cart;

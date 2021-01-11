@@ -1,6 +1,6 @@
-import App from "next/app";
+import App from 'next/app';
 
-import "../sass/main.scss";
+import '../sass/main.scss';
 
 const MyApp = ({ Component, pageProps }) => {
   return (
