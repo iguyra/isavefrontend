@@ -47,7 +47,7 @@ const contact = () => {
       });
       console.log(isSubmitted);
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
     }
   };
   console.log(isSubmitted);
