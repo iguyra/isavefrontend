@@ -1,7 +1,10 @@
 // const { default: Layout } = require("../components/Layout")
 import Link from 'next/link';
+import axios from 'axios';
 import { useState } from 'react';
 import Layout from '../components/Layout';
+import Loader from '../components/Loader/Loader';
+import URLbaseAPI from '../functions/URLbaseAPI';
 
 const contact = () => {
   const [inputField, setInputField] = useState({
@@ -15,15 +18,26 @@ const contact = () => {
   const handleChange = (e) => {
     setInputField({ ...inputField, [e.target.name]: e.target.value });
   };
-  console.log(inputField);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const body = {
+      name: inputField.name,
+      email: inputField.email,
+      message: inputField.message,
+    };
+
+    const { data } = axios.post(`${URLbaseAPI}/api/contact`, body);
+
+    console.log(data);
+
     setIsSubmitted(true);
 
     console.log(isSubmitted);
   };
   console.log(isSubmitted);
+
   return (
     <Layout>
       <section className="section__contact">
@@ -107,7 +121,9 @@ const contact = () => {
               </label>
             </div>
 
-            <button className="form__button">submit</button>
+            <button className="form__button">
+              {isSubmitted ? 'submited' : 'submit'}
+            </button>
           </form>
         </div>
       </section>
