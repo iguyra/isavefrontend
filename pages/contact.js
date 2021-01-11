@@ -32,7 +32,7 @@ const contact = () => {
         message: inputField.message,
       };
 
-      await axios.post(`${URLbaseAPI}/api/contact`, body);
+      const { data } = await axios.post(`${URLbaseAPI}/api/contact`, body);
 
       console.log('dada', data);
 
@@ -47,7 +47,9 @@ const contact = () => {
       });
       console.log(isSubmitted);
     } catch (err) {
-      console.log(err.response);
+      console.log(err.response.data.message);
+      setIsSuccess(false);
+      setIsSubmitted(false);
     }
   };
   console.log(isSubmitted);

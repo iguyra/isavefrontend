@@ -57,11 +57,16 @@ class forgotpassword extends React.Component {
             iguyra <span>&larr;</span>
           </a>
         </Link>
-        <p className="siginin__paragraph">
-          {data.message
-            ? 'token sent to your email'
-            : ' we will send you and email to reset your password'}
-        </p>
+
+        {data.message ? (
+          <span className="success">
+            reset link sent to your the email provided, please log into the
+            email to reset your password
+          </span>
+        ) : (
+          ' we will send you an email to reset your password'
+        )}
+
         <form className="siginin__form" onSubmit={this.handleSubmit} action="">
           <label className="siginin__label" htmlFor="email">
             <input
