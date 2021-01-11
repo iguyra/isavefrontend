@@ -41,5 +41,12 @@
     text-transform: uppercase;
     border: none;
     box-shadow: 5px 10px 10px $color-grey-light;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+
+    &:focus {
+      outline: none;
+    }
   }
 }

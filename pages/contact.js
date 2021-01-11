@@ -25,7 +25,7 @@ const contact = () => {
 
     try {
       setIsSubmitted(true);
-
+      setIsSuccess(false);
       const body = {
         name: inputField.name,
         email: inputField.email,
