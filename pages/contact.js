@@ -32,7 +32,7 @@ const contact = () => {
         message: inputField.message,
       };
 
-      const { data } = await axios.post(`${URLbaseAPI}/api/contact`, body);
+      await axios.post(`${URLbaseAPI}/api/contact`, body);
 
       console.log('dada', data);
 

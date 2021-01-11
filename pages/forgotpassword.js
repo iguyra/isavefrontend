@@ -1,19 +1,18 @@
-import React from "react";
-import Router from "next/router";
-import axios from "axios";
-import Layout from "../components/Layout";
-import Loader from "../components/Loader/Loader";
-import Link from "next/link";
-import URLbsaeAPI from "../functions/URLbaseAPI"
-
+import React from 'react';
+import Router from 'next/router';
+import axios from 'axios';
+import Layout from '../components/Layout';
+import Loader from '../components/Loader/Loader';
+import Link from 'next/link';
+import URLbsaeAPI from '../functions/URLbaseAPI';
 
 class forgotpassword extends React.Component {
   state = {
-    email: "",
+    email: '',
     data: {},
-    errorMsg: "",
+    errorMsg: '',
     error: false,
-    isSubmiting: false
+    isSubmiting: false,
   };
 
   handleChange = (event) => {
@@ -23,65 +22,71 @@ class forgotpassword extends React.Component {
   handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      this.setState({isSubmiting:true})
+      this.setState({ isSubmiting: true });
 
-    const { email } = this.state;
-   
-    const { data } = await axios.patch(`${URLbsaeAPI}/api/users/forgotPassword`, { email });
-    this.setState({error:false})
-    this.setState({isSubmiting:false})
+      const { email } = this.state;
 
-    console.log("password reset sent",data);
-    // Router.push("/");
-    this.setState({ data: data });
+      const { data } = await axios.patch(
+        `${URLbsaeAPI}/api/users/forgotPassword`,
+        {
+          email,
+        }
+      );
+      this.setState({ error: false });
+      this.setState({ isSubmiting: false });
+
+      console.log('password reset sent', data);
+      // Router.push("/");
+      this.setState({ data: data });
     } catch (error) {
-      this.setState({ errorMsg: error.response.data.message })
-      console.log(error.response.data)
-      this.setState({ error: true })
-      this.setState({isSubmiting:false})
-
-   }
+      this.setState({ errorMsg: error.response.data.message });
+      console.log(error.response.data);
+      this.setState({ error: true });
+      this.setState({ isSubmiting: false });
+    }
   };
 
   render() {
-    const { data, error,errorMsg ,isSubmiting} = this.state;
+    const { data, error, errorMsg, isSubmiting } = this.state;
     return (
       <section className="siginin" id="signin">
-                  {error ? <p className="error">{ errorMsg}</p>: ""}
+        {error ? <p className="error">{errorMsg}</p> : ''}
 
-          <Link href="/">
-            <a className="siginin__sitename" id="sitename">
-              iguyra <span>&larr;</span>
-            </a>
-            </Link>
+        <Link href="/">
+          <a className="siginin__sitename" id="sitename">
+            iguyra <span>&larr;</span>
+          </a>
+        </Link>
         <p className="siginin__paragraph">
-          {data.message ? "token sent to your email" : " we will send you and email to reset your password"}               
+          {data.message
+            ? 'token sent to your email'
+            : ' we will send you and email to reset your password'}
         </p>
-          <form className="siginin__form" onSubmit={this.handleSubmit} action="">
-            <label className="siginin__label" htmlFor="email">
-             
-              <input
-                className="siginin__input"
-                name="email"
-                type="email"
-                id="email"
-                placeholder="please enter your email"
-                onChange={this.handleChange}
-              />
-            </label>
-           
-          <button  className="siginin__button">{ isSubmiting ? <Loader/>: "submit"}</button>
+        <form className="siginin__form" onSubmit={this.handleSubmit} action="">
+          <label className="siginin__label" htmlFor="email">
+            <input
+              className="siginin__input"
+              name="email"
+              type="email"
+              id="email"
+              placeholder="please enter your email"
+              onChange={this.handleChange}
+            />
+          </label>
 
-            <div className="siginin__details">
-              
-              <Link href="/login">
-                <a className="siginin__register" id="createaccount">
-                  login
-                </a>
-              </Link>
-            </div>
-          </form>
-        </section>
+          <button className="siginin__button">
+            {isSubmiting ? <Loader /> : 'submit'}
+          </button>
+
+          <div className="siginin__details">
+            <Link href="/login">
+              <a className="siginin__register" id="createaccount">
+                login
+              </a>
+            </Link>
+          </div>
+        </form>
+      </section>
     );
   }
 }
