@@ -14,6 +14,7 @@ const contact = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (e) => {
     setInputField({ ...inputField, [e.target.name]: e.target.value });
@@ -22,19 +23,32 @@ const contact = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const body = {
-      name: inputField.name,
-      email: inputField.email,
-      message: inputField.message,
-    };
+    try {
+      setIsSubmitted(true);
 
-    const { data } = axios.post(`${URLbaseAPI}/api/contact`, body);
+      const body = {
+        name: inputField.name,
+        email: inputField.email,
+        message: inputField.message,
+      };
 
-    console.log(data);
+      const { data } = await axios.post(`${URLbaseAPI}/api/contact`, body);
 
-    setIsSubmitted(true);
+      console.log('dada', data);
 
-    console.log(isSubmitted);
+      setIsSuccess(data.success);
+
+      setIsSubmitted(false);
+
+      setInputField({
+        name: '',
+        email: '',
+        message: '',
+      });
+      console.log(isSubmitted);
+    } catch (err) {
+      console.log(err);
+    }
   };
   console.log(isSubmitted);
 
@@ -61,7 +75,7 @@ const contact = () => {
           </div>
           <div className="contact__heading">
             CONTACT US
-            {isSubmitted ? (
+            {isSuccess ? (
               <span className="success">
                 we will get to you within few minutes
               </span>
@@ -78,7 +92,6 @@ const contact = () => {
                 className="form__input"
                 name="name"
                 type="text"
-                id="email"
                 onChange={handleChange}
                 value={inputField.name}
               />
@@ -91,7 +104,6 @@ const contact = () => {
                   className="form__input"
                   name="email"
                   type="email"
-                  id="email"
                   value={inputField.email}
                   onChange={handleChange}
                 />
@@ -122,7 +134,7 @@ const contact = () => {
             </div>
 
             <button className="form__button">
-              {isSubmitted ? 'submited' : 'submit'}
+              {isSubmitted ? <Loader /> : 'submit'}
             </button>
           </form>
         </div>
