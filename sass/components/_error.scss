@@ -1,7 +1,7 @@
 .error {
   background: linear-gradient(to bottom left, #fff6f6 40%, #fff6f6 100%);
   padding: 1rem;
-  font-size: 1.4rem;
-  border: 1px solid #d02e2e;
-  color: #d02e2e;
+  border: 1px solid grey;
+  transition: all 0.25s;
+  letter-spacing: 1px;
 }

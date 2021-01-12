@@ -38,7 +38,6 @@ const edit = ({ userr }) => {
     }
     console.log(isDisabled);
   };
-  console.log(isDisabled);
 
   const { firstname, lastname, phonenumber } = inputField;
   console.log(firstname);
@@ -155,10 +154,20 @@ const edit = ({ userr }) => {
 
 edit.getInitialProps = async (ctx) => {
   try {
-    const { req } = ctx;
+    const { req, res } = ctx;
 
     let token = req ? getServerSideToken(req) : getClientSideToken();
 
+    if (!token) {
+      if (typeof window === 'object') {
+        return Router.push('/login');
+      } else {
+        if (req) {
+          res.writeHead(301, { location: '/login' });
+          return res.end();
+        }
+      }
+    }
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,

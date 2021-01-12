@@ -4,6 +4,12 @@ import Router from 'next/router';
 import axios from 'axios';
 
 import URLbaseAPI from '../../../functions/URLbaseAPI';
+import {
+  getFrontUser,
+  redirectPage,
+  getServerSideToken,
+  getClientSideToken,
+} from '../../../functions/fauthContoller';
 
 class updatepassword extends React.Component {
   state = {
@@ -43,7 +49,7 @@ class updatepassword extends React.Component {
 
       console.log('password updated');
       this.setState({ data: data });
-      Router.push('/');
+      Router.push('/user');
     } catch (error) {
       console.log('error', error.response.data);
       this.setState({ errorMsg: error.response.data });
@@ -114,5 +120,35 @@ class updatepassword extends React.Component {
     );
   }
 }
+
+updatepassword.getInitialProps = async (ctx) => {
+  try {
+    const { req, res } = ctx;
+
+    let token = req ? getServerSideToken(req) : getClientSideToken();
+
+    if (!token) {
+      if (typeof window === 'object') {
+        return Router.push('/login');
+      } else {
+        if (req) {
+          res.writeHead(301, { location: '/login' });
+          return res.end();
+        }
+      }
+    }
+
+    return {
+      user: {}, // will be passed to the page component as props
+    };
+  } catch (err) {
+    if (err) {
+      if (typeof window === 'object') {
+        console.log('browser object');
+        Router.push('/forgotpassword');
+      }
+    }
+  }
+};
 
 export default updatepassword;

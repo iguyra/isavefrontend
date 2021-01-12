@@ -5,6 +5,12 @@ import Layout from '../components/Layout';
 import Loader from '../components/Loader/Loader';
 import Link from 'next/link';
 import URLbsaeAPI from '../functions/URLbaseAPI';
+import {
+  getFrontUser,
+  redirectPage,
+  getServerSideToken,
+  getClientSideToken,
+} from '../functions/fauthContoller';
 
 class forgotpassword extends React.Component {
   state = {
@@ -95,5 +101,35 @@ class forgotpassword extends React.Component {
     );
   }
 }
+
+forgotpassword.getInitialProps = async (ctx) => {
+  try {
+    const { req, res } = ctx;
+
+    let token = req ? getServerSideToken(req) : getClientSideToken();
+
+    if (token) {
+      if (typeof window === 'object') {
+        return Router.push('/');
+      } else {
+        if (req) {
+          res.writeHead(301, { location: '/' });
+          return res.end();
+        }
+      }
+    }
+
+    return {
+      user: {}, // will be passed to the page component as props
+    };
+  } catch (err) {
+    if (err) {
+      if (typeof window === 'object') {
+        console.log('browser object');
+        Router.push('/forgotpassword');
+      }
+    }
+  }
+};
 
 export default forgotpassword;

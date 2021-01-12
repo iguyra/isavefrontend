@@ -11,10 +11,13 @@ const contact = () => {
     name: '',
     email: '',
     message: '',
+    phonenumber: '',
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleChange = (e) => {
     setInputField({ ...inputField, [e.target.name]: e.target.value });
@@ -29,6 +32,7 @@ const contact = () => {
       const body = {
         name: inputField.name,
         email: inputField.email,
+        phonenumber: inputField.phonenumber,
         message: inputField.message,
       };
 
@@ -39,6 +43,7 @@ const contact = () => {
       setIsSuccess(data.success);
 
       setIsSubmitted(false);
+      setIsError(false);
 
       setInputField({
         name: '',
@@ -48,7 +53,9 @@ const contact = () => {
       console.log(isSubmitted);
     } catch (err) {
       console.log(err.response.data.message);
+      setErrorMsg(err.response.data.message);
       setIsSuccess(false);
+      setIsError(true);
       setIsSubmitted(false);
     }
   };
@@ -84,6 +91,11 @@ const contact = () => {
             ) : (
               <span>we reply within minutes</span>
             )}
+            {!isError ? (
+              ''
+            ) : (
+              <span className="error">email and message field required</span>
+            )}
           </div>
           <form className="form" onSubmit={handleSubmit} action="">
             <div className="form__group">
@@ -114,11 +126,11 @@ const contact = () => {
                 phone
                 <input
                   className="form__input"
-                  name="phone"
+                  name="phonenumber"
                   type="number"
                   id="phone"
                   onChange={handleChange}
-                  value={inputField.phone}
+                  value={inputField.phonenumber}
                 />
               </label>
 
