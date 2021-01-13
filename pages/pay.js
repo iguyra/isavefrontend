@@ -14,10 +14,10 @@ export const pay = ({ carttt }) => {
   const [cart, setCart] = useContext(AppContext);
 
   const productCount =
-    null !== cart && Object.keys(cart).length ? cart.totalProductsCount : '';
+    null !== cart && Object.keys(cart).length ? cart.totalProductsCount : '65';
 
   const totalPrice =
-    null !== cart && Object.keys(cart).length ? cart.totalProductsPrice : '';
+    null !== cart && Object.keys(cart).length ? cart.totalProductsPrice : '55';
 
   useEffect(() => {
     let user = localStorage.getItem('inputs');
@@ -64,12 +64,12 @@ export const pay = ({ carttt }) => {
           <li className="details__allitems details__allitems--total">
             total price
             <p className="details__allitemprice">
-              GH: {cart.totalProductsPrice}
+              GH: {carttt.totalProductsPrice}
             </p>
           </li>
 
-          {cart.products &&
-            cart.products.map((product) => (
+          {carttt.products &&
+            carttt.products.map((product) => (
               <li className="details__allitems">
                 {product.name}
                 <p className="details__allitemprice">

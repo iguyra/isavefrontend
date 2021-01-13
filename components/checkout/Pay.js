@@ -2,18 +2,18 @@ import React from 'react';
 import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 
 export default function App({ user, cart }) {
-  console.log(user, cart);
+  console.log(user ? user : 'yes', cart);
 
   const config = {
     public_key: 'FLWPUBK-606c1643dba29efce95f0fcf4735e236-X',
     tx_ref: Date.now(),
-    amount: cart.totalProductsPrice,
+    amount: cart ? cart.totalProductsPrice : '',
     currency: 'GHS',
     payment_options: 'card,mobilemoney,ussd',
     customer: {
-      email: 'user@gmail.com',
-      phonenumber: '07064586146',
-      name: 'joel ugwumadu',
+      email: user ? user.email : '',
+      phonenumber: user ? user.number : '',
+      name: user ? user.name : '',
     },
     customizations: {
       title: 'my Payment Title',
@@ -27,9 +27,8 @@ export default function App({ user, cart }) {
 
   return (
     <div className="App">
-      <h1>Hello Test user</h1>
-
       <button
+        className="success"
         onClick={() => {
           handleFlutterPayment({
             callback: (response) => {
@@ -40,7 +39,7 @@ export default function App({ user, cart }) {
           });
         }}
       >
-        Payment with React hooks
+        Proceed To Payment
       </button>
     </div>
   );
