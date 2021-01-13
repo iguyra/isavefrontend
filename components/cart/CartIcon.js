@@ -1,19 +1,19 @@
-import { useContext } from "react";
-import Link from "next/link";
+import { useContext } from 'react';
+import Link from 'next/link';
 
-import React from "react";
-import styles from "./CartIcon.module.scss";
+import React from 'react';
+import styles from './CartIcon.module.scss';
 
-import { AppContext } from "../../context/appContext";
+import { AppContext } from '../../context/appContext';
 
 const CartIcon = () => {
   const [cart, setCart] = useContext(AppContext);
 
   const productCount =
-    null !== cart && Object.keys(cart).length ? cart.totalProductsCount : "";
+    null !== cart && Object.keys(cart).length ? cart.totalProductsCount : '';
 
   const totalPrice =
-    null !== cart && Object.keys(cart).length ? cart.totalProductsPrice : "";
+    null !== cart && Object.keys(cart).length ? cart.totalProductsPrice : '';
 
   return (
     <React.Fragment>
@@ -22,9 +22,9 @@ const CartIcon = () => {
           <i className="fa fa-shopping-cart cartIcon__icon"></i>
         </Link>
         <div className="cartIcon__cartDetailContainer">
-          <span>{productCount ? <span>{productCount} </span> : ""}</span>
+          <span>{productCount ? <span>{productCount} </span> : ''}</span>
           <a className="totalPrice">
-            {totalPrice ? <span>GHS {totalPrice}</span> : ""}
+            {totalPrice ? <span>GHS {totalPrice}</span> : ''}
           </a>
         </div>
       </div>

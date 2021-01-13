@@ -1,74 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React from 'react';
+import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 
-export const Pay = ({ cart }) => {
-  const [state, setState] = useState();
-  const [input, setInput] = useState();
+export default function App({ user, cart }) {
+  console.log(user, cart);
 
-  useEffect(() => {
-    let input = localStorage.getItem("inputs");
-    input = JSON.parse(input);
-    setInput(input);
-  }, []);
+  const config = {
+    public_key: 'FLWPUBK-606c1643dba29efce95f0fcf4735e236-X',
+    tx_ref: Date.now(),
+    amount: cart.totalProductsPrice,
+    currency: 'GHS',
+    payment_options: 'card,mobilemoney,ussd',
+    customer: {
+      email: 'user@gmail.com',
+      phonenumber: '07064586146',
+      name: 'joel ugwumadu',
+    },
+    customizations: {
+      title: 'my Payment Title',
+      description: 'Payment for items in cart',
+      logo:
+        'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+    },
+  };
 
-  console.log("input", input);
+  const handleFlutterPayment = useFlutterwave(config);
 
   return (
-    <section className="details pay" id="pay">
-      <ul className="steps">
-        <p className="steps__list ">details</p>
-        <p className="steps__list ">shipping</p>
-        <p className="steps__list active">pay</p>
-      </ul>
+    <div className="App">
+      <h1>Hello Test user</h1>
 
-      <div className="details__summarycontainer">
-        <p className="details__summary">summary</p>
-        <ul className="details__list">
-          <li className="details__item">
-            <i className="far icon fa-user"></i>
-            {input && input.firstname}
-          </li>
-          <li className="details__item">
-            <i className="fas icon fa-map-pin"></i>bus stop 100
-          </li>
-          <li className="details__item">
-            <i className="far icon fa-envelope"></i> {input && input.email}
-          </li>
-          <li className="details__item">
-            <i className="fas icon fa-phone-alt"></i> {input && input.number}
-          </li>
-        </ul>
-      </div>
-
-      <div className="details__itemcontainer">
-        <ul className="details__alllist">
-          <li className="details__allitems details__allitems--total">
-            total price
-            <p className="details__allitemprice">
-              GH: {cart.totalProductsPrice}
-            </p>
-          </li>
-      
-          {cart.products &&
-            cart.products.map((product) => (
-              <li className="details__allitems">
-                {product.name}
-                <p className="details__allitemprice">
-                  GH: {product.totalPrice}
-                </p>
-              </li>
-            ))}
-        </ul>
-      </div>
-
-      <div className="details__nextcontainer">
-        <div className="details__next">
-          <a href="#" className="details__next--link" id="paymentproceed">
-            pay
-          </a>
-        </div>
-      </div>
-    </section>
+      <button
+        onClick={() => {
+          handleFlutterPayment({
+            callback: (response) => {
+              console.log(response);
+              closePaymentModal(); // this will close the modal programmatically
+            },
+            onClose: () => {},
+          });
+        }}
+      >
+        Payment with React hooks
+      </button>
+    </div>
   );
-};
-
-export default Pay;
+}

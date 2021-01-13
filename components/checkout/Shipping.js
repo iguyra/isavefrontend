@@ -1,8 +1,10 @@
+import Link from 'next/link';
+
 const Shipping = ({ setOpenPay }) => {
   const handleOpenPay = (e) => {
     e.preventDefault();
 
-    console.log("logged");
+    console.log('logged');
     setOpenPay(true);
   };
 
@@ -61,9 +63,11 @@ const Shipping = ({ setOpenPay }) => {
           onClick={(event) => handleOpenPay(event)}
           className="details__next"
         >
-          <a href="#proceedpayment" className="details__next--link" id="pay">
-            <i class="fas fa-chevron-down"></i>
-          </a>
+          <Link href="/pay">
+            <a className="details__next--link" id="pay">
+              <i class="fas fa-chevron-down"></i>
+            </a>
+          </Link>
         </div>
       </div>
     </section>
