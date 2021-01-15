@@ -1,6 +1,8 @@
 import React from 'react';
 import Router from 'next/router';
 import axios from 'axios';
+import cookieCutter from 'cookie-cutter';
+
 import Loader1 from 'react-loader-spinner';
 
 import Aos from 'aos';
@@ -28,22 +30,6 @@ class login extends React.Component {
     shouldRedirect: false,
   };
 
-  //   async componentDidMount() {
-  //     const token = localStorage.getItem("token");
-
-  //     const data = await getFrontUser(token);
-  //     if (data) {
-  //       this.setState({ shouldRedirect: true });
-  //     }
-
-  // console.log(token)
-  //     if (this.state.shouldRedirect) {
-  //       Router.push("/")
-  //     }
-
-  //     console.log(this.state.shouldRedirect)
-  //   }
-
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -58,7 +44,9 @@ class login extends React.Component {
         email,
         password,
       });
-      localStorage.setItem('token', data.token);
+      // localStorage.setItem('token', data.token);
+      cookieCutter.set('token', data.token);
+
       Router.push('/');
       this.setState({ data: data });
     } catch (error) {

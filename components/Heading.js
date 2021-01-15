@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import cookieCutter from 'cookie-cutter';
+
 import { getFrontUser } from '../functions/fauthContoller';
 import CartIcon from './cart/CartIcon';
 
@@ -14,7 +16,7 @@ class Heading extends React.Component {
 
   async componentDidMount() {
     try {
-      const token = localStorage.getItem('token');
+      const token = cookieCutter.get('token');
       const data = await getFrontUser(token);
 
       if (data) {

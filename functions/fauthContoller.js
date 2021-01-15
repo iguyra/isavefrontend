@@ -1,77 +1,76 @@
-import axios from "axios";
+import axios from 'axios';
 // const User = require("../");
-import Router from "next/router"
+import Router from 'next/router';
 
+import URLbaseAPI from '../functions/URLbaseAPI';
+import cookieCutter from 'cookie-cutter';
 
-import URLbaseAPI from "../functions/URLbaseAPI"
-
-// const axios = require("axios");
-// // const User = require("../");
-// const Router = require("next/router")
-
-// const URLbaseAPI = require("../functions/URLbaseAPI")
-
-
-
-
-export function getUser(req, res)  {
-  console.log("protected accesed");
+export function getUser(req, res) {
+  console.log('protected accesed');
 
   const user = req.user;
 
   res.json({
     user,
   });
-};
+}
 
-export async function getFrontUser(token)  {
+export async function getFrontUser(token) {
   try {
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    };   
-    console.log(URLbaseAPI.default)
-    const { data } = await axios.get(
-      `${URLbaseAPI}/api/users/cart`,
-      config
-    );
+    };
+    const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
 
     return data;
   } catch (err) {
-    console.log(err.response.data.message)
+    console.log(err.response.data.error.statusCode === 401);
+    if (err.response.data.error.statusCode === 401) {
+      Router.push('/login');
+    }
   }
 }
 
-
-export function getClientSideToken () {
-  if (typeof window !== "undefined") {
-   const token = localStorage.getItem("token")
-    return token
+export function getClientSideToken() {
+  if (typeof window !== 'undefined') {
+    const token = cookieCutter.get('token');
+    return token;
   }
-  return ""
+  return '';
 }
-export function getServerSideToken (req) {
-  if (typeof window === "undefined") {
-   const token = req ? req.cookies.token : ""
-    return token
+export function getServerSideToken(req) {
+  if (typeof window === 'undefined') {
+    const token = req ? req.cookies.token : '';
+    return token;
   }
-  return ""
+  return '';
 }
 
-export function redirectPage (ctx, err) {
-  
+export function redirectPage(ctx, err) {
   if (ctx) {
     if (err.response.data.error.statusCode === 500) {
-      const { req, res } = ctx
+      const { req, res } = ctx;
       if (req) {
-        res.writeHead(301, { location: "/login" });
+        res.writeHead(301, { location: '/login' });
         return res.end();
       } else {
-        return Router.push("/login")
+        return Router.push('/login');
       }
     }
   }
-
-
+}
+export function redirectPages(ctx, err) {
+  if (ctx) {
+    const { req, res } = ctx;
+    if (req) {
+      res.writeHead(301, { location: '/login' });
+      return res.end();
+    }
+  } else {
+    cookieCutter.set('token', '', { expires: new Date(0) });
+    console.log('else');
+    return Router.push('/login');
+  }
 }

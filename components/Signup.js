@@ -1,11 +1,11 @@
-import React from "react";
-import Layout from "../components/Layout";
-import Link from "next/link";
+import React from 'react';
+import Layout from '../components/Layout';
+import Link from 'next/link';
 
 export default class Slides extends React.Component {
   state = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     data: {},
   };
 
@@ -17,11 +17,13 @@ export default class Slides extends React.Component {
     event.preventDefault();
 
     const { email, password } = this.state;
-    console.log("email", email, password);
-    console.log("on signup");
-    const { data } = await axios.post("http://localhost:3000/api/users/signup", { email, password });
 
-    console.log("signup user", data);
+    const { data } = await axios.post(
+      'http://localhost:3000/api/users/signup',
+      { email, password }
+    );
+
+    console.log('signup user', data);
 
     this.setState({ data: data });
   };

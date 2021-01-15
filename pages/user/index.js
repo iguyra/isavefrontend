@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
+import cookieCutter from 'cookie-cutter';
+
 import Header from '../../components/Heading';
 import Layout from '../../components/Layout';
 import URLbaseAPI from '../../functions/URLbaseAPI';
 import {
   getServerSideToken,
   getClientSideToken,
-  redirectPage,
+  redirectPages,
 } from '../../functions/fauthContoller';
 
 function user(props) {
@@ -16,7 +18,7 @@ function user(props) {
 
   const logUserOut = () => {
     console.log('clearrrd');
-    localStorage.clear();
+    cookieCutter.set('token', '', { expires: new Date(0) });
     Router.push('/');
   };
 
@@ -67,7 +69,7 @@ function user(props) {
         <ul className="account__list">
           <li className="account__item">
             <div className="account__first">
-              <i class="fas fa-info-circle"></i>
+              <i className="fas fa-info-circle"></i>
               <Link href="/user/edit">
                 <a className="account__orders">details</a>
               </Link>
@@ -77,7 +79,7 @@ function user(props) {
           </li>
           <li className="account__item">
             <div className="account__first">
-              <i class="fas fa-key"></i>{' '}
+              <i className="fas fa-key"></i>{' '}
               <Link href="/user/updatepassword">
                 <a className="account__orders">change paswword</a>
               </Link>
@@ -120,13 +122,18 @@ user.getInitialProps = async (ctx) => {
     };
 
     const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
-    console.log(data);
 
     return {
-      user: data.user ? data.user : {}, // will be passed to the page component as props
+      user: data ? data.user : {}, // will be passed to the page component as props
     };
   } catch (err) {
-    console.log(err);
+    console.log('erorrr');
+    console.log(err.response.data.error.statusCode === 401);
+    if (err.response.data.error.statusCode === 401) {
+      console.log('yess');
+
+      redirectPages(ctx, err);
+    }
   }
 };
 

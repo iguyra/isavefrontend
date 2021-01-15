@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
+import cookieCutter from 'cookie-cutter';
 
 import URLbaseAPI from '../../../functions/URLbaseAPI';
 import {
@@ -19,6 +20,7 @@ class updatepassword extends React.Component {
     passwordConfirm: 'xxxxxxxx',
     errorMsg: '',
     isUpdating: false,
+    isSuccess: false,
   };
 
   handleChange = (event) => {
@@ -29,7 +31,7 @@ class updatepassword extends React.Component {
     event.preventDefault();
     console.log('clicked');
     try {
-      const token = localStorage.getItem('token');
+      const token = cookieCutter.get('token');
       this.setState({ isUpdating: true });
 
       console.log('componentmounted', token);
@@ -46,15 +48,25 @@ class updatepassword extends React.Component {
         { currentPassword, password, passwordConfirm },
         config
       );
+      cookieCutter.set('token', '', { expires: new Date(0) });
+      cookieCutter.set('token', data.token);
+      this.setState({ isUpdating: false });
 
-      console.log('password updated');
-      this.setState({ data: data });
-      Router.push('/user');
+      this.setState({ isSuccess: data.success });
     } catch (error) {
-      console.log('error', error.response.data);
       this.setState({ errorMsg: error.response.data });
+      console.log(error.response.data);
       this.setState({ error: true });
       this.setState({ isUpdating: false });
+
+      console.log(error.response.data.error.statusCode === 401);
+      if (error.response.data.error.statusCode === 401) {
+        // cookieCutter.set('token', '', { expires: new Date(0) });
+        // document.cookie =
+        //   'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        // const t = cookieCutter.get('token');
+        // console.log('t', t);
+      }
     }
   };
 
@@ -66,13 +78,16 @@ class updatepassword extends React.Component {
       currentPassword,
       password,
       passwordConfirm,
+      isSuccess,
     } = this.state;
+    console.log(isSuccess);
     return (
       <section className="useredit" id="signup">
         <div className="secondaryheading">
           <p className="secondaryheading__word">change password</p>
         </div>
         {error ? <p className="error">{errorMsg.message}</p> : ''}
+        {isSuccess && <p className="success">password updated successfully</p>}
         <form className="form" action="" onSubmit={this.handleSubmit}>
           <div className="form__group">
             <label className="form__label" htmlFor="email">
@@ -124,7 +139,6 @@ class updatepassword extends React.Component {
 updatepassword.getInitialProps = async (ctx) => {
   try {
     const { req, res } = ctx;
-
     let token = req ? getServerSideToken(req) : getClientSideToken();
 
     if (!token) {
@@ -142,12 +156,7 @@ updatepassword.getInitialProps = async (ctx) => {
       user: {}, // will be passed to the page component as props
     };
   } catch (err) {
-    if (err) {
-      if (typeof window === 'object') {
-        console.log('browser object');
-        Router.push('/forgotpassword');
-      }
-    }
+    console.log('elseee');
   }
 };
 
