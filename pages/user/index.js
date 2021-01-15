@@ -105,6 +105,8 @@ user.getInitialProps = async (ctx) => {
 
     let token = req ? getServerSideToken(req) : getClientSideToken();
 
+    console.log(token);
+
     if (!token) {
       if (typeof window === 'object') {
         return Router.push('/login');
