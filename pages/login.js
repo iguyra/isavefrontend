@@ -71,8 +71,9 @@ class login extends React.Component {
     return (
       <section className="siginin" id="signin">
         {error ? <p className="error">{errorMsg}</p> : ''}
-        <Link href="/user">
+        <Link href="/">
           <a className="siginin__sitename" id="sitename">
+            <span className="siginin__sitename--span">sign in to</span>
             iguyra <span>&larr;</span>
           </a>
         </Link>
