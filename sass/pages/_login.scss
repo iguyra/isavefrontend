@@ -2,6 +2,7 @@
   display: flex;
   padding-top: 3rem;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: $color-white;
   position: fixed;
@@ -22,7 +23,7 @@
     display: flex;
     padding: 1rem;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     width: 80%;
     position: relative;
 
@@ -42,7 +43,7 @@
     margin: 0 auto;
     padding: 1rem;
 
-    margin-bottom: rem;
+    margin-bottom: 1rem;
   }
   &__input {
     width: 100%;
