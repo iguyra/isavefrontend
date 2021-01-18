@@ -17,7 +17,6 @@ class Heading extends React.Component {
   async componentDidMount() {
     try {
       const token = cookieCutter.get('token');
-      console.log(token, 'token');
       const data = await getFrontUser(token);
 
       if (data) {

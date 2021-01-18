@@ -31,13 +31,11 @@ const edit = ({ userr }) => {
 
   const handleChange = (event) => {
     setInputField({ [event.target.name]: event.target.value });
-    console.log({ [event.target.name]: event.target.value });
     let value = event.target.value;
 
     if (value.length > 0) {
       setIsDisabled(false);
     }
-    console.log(isDisabled);
   };
 
   const { firstname, lastname, phonenumber } = inputField;

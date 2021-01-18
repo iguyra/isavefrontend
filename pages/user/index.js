@@ -17,7 +17,6 @@ function user(props) {
   let { user } = props;
 
   const logUserOut = () => {
-    console.log('clearrrd');
     cookieCutter.set('token', '', { expires: new Date(0) });
     Router.push('/');
   };
@@ -104,8 +103,6 @@ user.getInitialProps = async (ctx) => {
     const { req, res } = ctx;
 
     let token = req ? getServerSideToken(req) : getClientSideToken();
-
-    console.log(token);
 
     if (!token) {
       if (typeof window === 'object') {
