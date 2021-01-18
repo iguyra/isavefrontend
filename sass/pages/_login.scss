@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: $color-grey-light-1;
+  // background-color: $color-grey-light-1;
   position: fixed;
   top: 0;
   left: 0;
@@ -21,28 +21,27 @@
     text-align: center;
     margin-bottom: 1rem;
     box-shadow: 0.5rem 1rem 1.5rem $color-grey-light;
-    border: 1px solid rgba(204, 204, 204, 0.652);
     border-radius: 4px;
     margin-bottom: 4rem;
+    padding: 2.5rem 3rem;
   }
 
   &__sitename {
     font-size: 3rem;
-    font-weight: 600;
     text-decoration: none;
-    background: linear-gradient(to right, red, yellow, green);
-    color: transparent;
+    color: black;
     margin-bottom: 2rem;
     background-clip: text;
     font-family: 'Lobster Two', cursive;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
     &--span {
       display: block;
-      font-size: 1.6rem;
+      font-size: 1.2rem;
       text-align: center;
       font-weight: 400;
       color: black;
+      font-family: sans-serif, 'Times New Roman', serif;
     }
   }
 

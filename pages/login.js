@@ -74,8 +74,8 @@ class login extends React.Component {
         <Link href="/">
           <div className="siginin__sdetails">
             <a className="siginin__sitename" id="sitename">
-              <span className="siginin__sitename--span">sign in to</span>
-              iguyra <span>&larr;</span>
+              iguyra
+              <span>&larr;</span>
             </a>
           </div>
         </Link>
