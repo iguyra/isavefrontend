@@ -37,7 +37,17 @@
     flex-direction: column;
     justify-content: center;
     width: 90%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
     position: relative;
+    background: linear-gradient(
+      to right,
+      rgba(255, 0, 0, 0.158),
+      rgba(255, 255, 0, 0.185),
+      rgba(0, 128, 0, 0.226)
+    );
 
     &::after {
       background: linear-gradient(to right, red, yellow, green);
