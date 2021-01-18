@@ -136,14 +136,15 @@ const contact = () => {
 
               <label className="form__label" htmlFor="message">
                 message
-                <input
-                  className="form__input"
+                <textarea
+                  className="form__input form__input--textarea"
                   name="message"
-                  type="text"
                   id="message"
                   onChange={handleChange}
                   value={inputField.message}
-                />
+                >
+                  Some text...
+                </textarea>
               </label>
             </div>
 
