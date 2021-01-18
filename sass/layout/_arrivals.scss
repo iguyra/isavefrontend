@@ -57,3 +57,40 @@
     margin-bottom: 1rem;
   }
 }
+
+.arrival {
+  &__imgcontainer {
+    width: 100%;
+  }
+  &__img {
+    height: 28rem;
+  }
+
+  &__list {
+    display: flex;
+    white-space: nowrap;
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+
+  &__item {
+    padding: 0.5rem;
+    margin: 1rem;
+    text-align: center;
+  }
+
+  &__detailscontainer {
+    font-size: 1.4rem;
+  }
+
+  &__price {
+    color: $color-black;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  &__name {
+    color: $color-black;
+    text-transform: uppercase;
+  }
+}

@@ -14,7 +14,7 @@ export default class Arrivals extends React.Component {
       <section data-aos="fade-up" className="arrivals">
         <h4 className="product__phrase">new arrivals</h4>
 
-        <ul className="arrivals__list">
+        {/* <ul className="arrivals__list">
           {arrival.map((arrival) => {
             return (
               <li key={arrival.name} className="arrivals__item">
@@ -34,7 +34,66 @@ export default class Arrivals extends React.Component {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
+        <div className="arrival">
+          <div className="arrival__list">
+            <div className="arrival__item">
+              <div className="arrival__imgcontainer">
+                <Link
+                  key={arrival.name}
+                  href={`/products/[product]}`}
+                  as={`/products/${arrival._id}`}
+                >
+                  <img
+                    src="/static/llili2.jpg"
+                    alt=""
+                    className="arrival__img"
+                  />
+                </Link>
+              </div>
+              <div className="arrival__detailscontainer">
+                <div className="arrival__name">top and bottom beautiful</div>
+                <div className="arrival__price">GHS 404</div>
+              </div>
+            </div>
+
+            <div className="arrival__item">
+              <div className="arrival__imgcontainer">
+                <Link
+                  key={arrival.name}
+                  href={`/products/[product]}`}
+                  as={`/products/${arrival._id}`}
+                >
+                  <img
+                    src="/static/lili4.jpg"
+                    alt=""
+                    className="arrival__img"
+                  />
+                </Link>
+              </div>
+              <div className="arrival__detailscontainer">
+                <div className="arrival__name">top and bottom beautiful</div>
+                <div className="arrival__price">GHS 404</div>
+              </div>
+            </div>
+
+            <div className="arrival__item">
+              <div className="arrival__imgcontainer">
+                <Link
+                  key={arrival.name}
+                  href={`/products/[product]}`}
+                  as={`/products/${arrival._id}`}
+                >
+                  <img src="/static/li0.jpg" alt="" className="arrival__img" />
+                </Link>
+              </div>
+              <div className="arrival__detailscontainer">
+                <div className="arrival__name">top and bottom beautiful</div>
+                <div className="arrival__price">GHS 404</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     );
   }
