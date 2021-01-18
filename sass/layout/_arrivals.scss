@@ -18,6 +18,7 @@
     height: 28rem;
     object-fit: cover;
     object-position: top;
+    padding: 2rem;
   }
 
   &__item {
@@ -26,7 +27,7 @@
     list-style: none;
     margin-bottom: 1rem;
     background-color: $color-white;
-    padding: 1rem;
+    padding-left: 0;
     box-shadow: 0rem 0.3rem 0.5rem $color-grey-light;
   }
 
