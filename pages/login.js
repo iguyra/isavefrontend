@@ -72,10 +72,12 @@ class login extends React.Component {
       <section className="siginin" id="signin">
         {error ? <p className="error">{errorMsg}</p> : ''}
         <Link href="/">
-          <a className="siginin__sitename" id="sitename">
-            <span className="siginin__sitename--span">sign in to</span>
-            iguyra <span>&larr;</span>
-          </a>
+          <div className="siginin__sdetails">
+            <a className="siginin__sitename" id="sitename">
+              <span className="siginin__sitename--span">sign in to</span>
+              iguyra <span>&larr;</span>
+            </a>
+          </div>
         </Link>
         <form className="siginin__form" onSubmit={this.handleSubmit} action="">
           <div className="siginin__form-group">
