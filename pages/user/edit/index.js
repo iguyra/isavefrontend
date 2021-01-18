@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import Router from 'next/router';
+import cookieCutter from 'cookie-cutter';
 
 import Header from '../../../components/Heading';
 import Layout from '../../../components/Layout';
@@ -47,7 +48,9 @@ const edit = ({ userr }) => {
 
     try {
       setIsUpdating(true);
-      const token = localStorage.getItem('token');
+      // const token = localStorage.getItem('token');
+      const token = cookieCutter.get('token');
+
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
