@@ -77,8 +77,10 @@ class login extends React.Component {
           </a>
         </Link>
         <form className="siginin__form" onSubmit={this.handleSubmit} action="">
-          <label className="siginin__label" htmlFor="email">
-            email
+          <div className="siginin__form-group">
+            <label className="siginin__label" htmlFor="email">
+              email
+            </label>
             <input
               className="siginin__input"
               name="email"
@@ -88,20 +90,21 @@ class login extends React.Component {
               onChange={this.handleChange}
               value={email}
             />
-          </label>
-          <label className="siginin__label" htmlFor="password">
-            password
-            <input
-              className="siginin__input"
-              name="password"
-              type="password"
-              id="password"
-              placeholder="type password"
-              onChange={this.handleChange}
-              value={password}
-            />
-          </label>
-
+          </div>
+          <div className="siginin__form-group">
+            <label className="siginin__label" htmlFor="password">
+              password
+              <input
+                className="siginin__input"
+                name="password"
+                type="password"
+                id="password"
+                placeholder="type password"
+                onChange={this.handleChange}
+                value={password}
+              />
+            </label>
+          </div>
           <button disabled={isLogging} className="siginin__button">
             {isLogging ? <Loader /> : 'login'}
           </button>

@@ -15,25 +15,48 @@
     font-weight: 600;
     text-decoration: none;
     color: $color-black;
+    margin-bottom: 2rem;
   }
 
   &__form {
     display: flex;
+    padding: 1rem;
     flex-direction: column;
     justify-content: flex-start;
     width: 80%;
+    background-color: $color-grey-light-1;
+    position: relative;
+
+    &::after {
+      background: linear-gradient(to right, red, yellow, green);
+      position: absolute;
+      content: '';
+      height: 6px;
+      right: 0;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  &__form-group {
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem;
+
+    margin-bottom: 2rem;
   }
   &__input {
-    float: right;
-    margin-left: margin-left-1;
     width: 100%;
-    border-width: 0px;
-    border: 0.2rem solid $color-grey-light-1;
-    height: 3rem;
-    border-radius: 1.5rem;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 
     &:focus {
       outline: none;
+      border: 1px solid $color-primary;
     }
   }
 
@@ -44,17 +67,16 @@
   }
 
   &__button {
-    width: 60%;
-    margin: auto;
-    cursor: pointer;
-    padding: 0.7rem;
-    background-color: $color-yellow-light;
+    width: 80%;
+    background-color: #4caf50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
     border: none;
-    color: $color-white;
-    box-shadow: 1rem 0.5rem 0.5rem $color-grey-light-1;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 auto;
+    text-transform: capitalize;
   }
 
   &__passwordforgot {
