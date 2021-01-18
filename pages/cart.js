@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Layout from '../components/Layout';
+import cookieCutter from 'cookie-cutter';
+
 import {
   URLbaseAPI,
   getFrontUser,
@@ -18,7 +20,9 @@ class cart extends React.Component {
 
   async componentDidMount() {
     try {
-      const token = localStorage.getItem('token');
+      const token = cookieCutter.get('token');
+      console.log('token', token);
+
       const cart = JSON.parse(localStorage.getItem('isavecart'));
 
       if (cart) {
