@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const Detail = () => {
   const [input, setInput] = useState();
@@ -6,7 +6,7 @@ const Detail = () => {
   const handleOnChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
 
-    localStorage.setItem("inputs", JSON.stringify(input));
+    localStorage.setItem('inputs', JSON.stringify(input));
   };
   console.log(input);
 
@@ -30,8 +30,9 @@ const Detail = () => {
             id="firstname"
             name="firstname"
             className="details__input"
-            placeholder="res"
+            // placeholder="res"
             type="text"
+            required
           />
         </div>
         <div className="details__group">
@@ -43,7 +44,7 @@ const Detail = () => {
             id="lastname"
             name="lastname"
             className="details__input"
-            placeholder="jo"
+            // placeholder="jo"
             type="text"
           />
         </div>
@@ -56,7 +57,7 @@ const Detail = () => {
             id="email"
             name="email"
             className="details__input"
-            placeholder="res@res.com"
+            // placeholder="res@res.com"
             type="email"
           />
         </div>
@@ -69,8 +70,9 @@ const Detail = () => {
             id="number"
             name="number"
             className="details__input"
-            placeholder="0200000000"
+            // placeholder="0200000000"
             type="number"
+            required
           />
         </div>
         {/* <div className="details__next">

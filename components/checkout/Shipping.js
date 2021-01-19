@@ -44,7 +44,7 @@ const Shipping = ({ setOpenPay }) => {
           <input
             id="adress"
             className="details__input"
-            placeholder="eg: 111 bus stop"
+            // placeholder="eg: 111 bus stop"
             type="email"
           />
         </div>
