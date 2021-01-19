@@ -7,8 +7,23 @@
     font-size: 2rem;
   }
 
+  &__item {
+    font-size: 1.2rem;
+    list-style: none;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+  }
+
+  &__details {
+    text-align: center;
+  }
+
   &__allrights {
     color: $color-black;
     font-size: 1.4rem;
+  }
+
+  &__name {
+    text-transform: uppercase;
   }
 }

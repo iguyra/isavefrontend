@@ -55,6 +55,7 @@ export default class Arrivals extends React.Component {
                 <div className="arrival__name">top and bottom beautiful</div>
                 <div className="arrival__price">GHS 404</div>
               </div>
+              <AddToCartButton product={arrival} />
             </div>
 
             <div className="arrival__item">
