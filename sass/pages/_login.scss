@@ -37,7 +37,12 @@
     background-clip: text;
     font-weight: 600;
     // font-family: 'Lobster Two', cursive;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
+    font-family: 'Roboto Condensed', sans-serif;
+
+    &:span {
+      margin-left: 1rem;
+    }
 
     &--span {
       display: block;

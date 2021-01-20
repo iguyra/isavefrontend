@@ -24,9 +24,9 @@ export default class MyDocument extends Document {
           ></link>
 
           <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,900;1,300&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap"
             rel="stylesheet"
-          />
+          ></link>
         </Head>
         <body>
           <Main />
