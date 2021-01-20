@@ -70,17 +70,17 @@ class login extends React.Component {
     console.log(error);
     return (
       <section className="siginin" id="signin">
+        <Link href="/">
+          <div className="siginin__sdetails">
+            <a className="siginin__sitename" id="sitename">
+              iguyra
+              <span>&larr;</span>
+            </a>
+          </div>
+        </Link>
         {error ? <p className="error">{errorMsg}</p> : ''}
 
         <form className="siginin__form" onSubmit={this.handleSubmit} action="">
-          <Link href="/">
-            <div className="siginin__sdetails">
-              <a className="siginin__sitename" id="sitename">
-                iguyra
-                <span>&larr;</span>
-              </a>
-            </div>
-          </Link>
           <div className="siginin__form-group">
             <label className="siginin__label" htmlFor="email">
               email
