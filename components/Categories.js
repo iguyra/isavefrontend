@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default class Categories extends React.Component {
   render() {
@@ -11,7 +11,7 @@ export default class Categories extends React.Component {
           <a href="/productpage.html" className="categories__list">
             women
           </a>
-          <a href="/cartItem.html" className="categories__list">
+          <a href="/user" className="categories__list">
             men
           </a>
           <a href="#" className="categories__list">

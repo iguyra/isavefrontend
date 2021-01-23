@@ -11,6 +11,7 @@ import {
   getFrontUser,
   getServerSideToken,
   getClientSideToken,
+  redirectPages,
 } from '../../../functions/fauthContoller';
 import URLbaseAPI from '../../../functions/URLbaseAPI';
 
@@ -156,20 +157,6 @@ const edit = ({ userr }) => {
 edit.getInitialProps = async (ctx) => {
   try {
     const { req, res } = ctx;
-
-    // let token = req ? getServerSideToken(req) : getClientSideToken();
-
-    // if (!token) {
-    //   if (typeof window === 'object') {
-    //     return Router.push('/login');
-    //   } else {
-    //     if (req) {
-    //       res.writeHead(301, { location: '/login' });
-    //       return res.end();
-    //     }
-    //   }
-    // }
-
     let config;
 
     if (req) {
@@ -190,7 +177,9 @@ edit.getInitialProps = async (ctx) => {
       userr: data.user, // will be passed to the page component as props
     };
   } catch (err) {
-    console.log('errorr', err);
+    if (err.response.data.error.statusCode === 401) {
+      redirectPages(ctx, err);
+    }
   }
 };
 

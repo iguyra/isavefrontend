@@ -12,6 +12,7 @@ import {
   getClientSideToken,
   redirectPages,
   getFrontUser,
+  redirectPage,
 } from '../../functions/fauthContoller';
 
 function user(props) {
@@ -120,27 +121,21 @@ user.getInitialProps = async (ctx) => {
 
     const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
 
-    console.log(data);
-
-    // data = await getFrontUser();
-
-    console.log('dataa', !process.browser);
-
-    const dataa = {
-      email: 'res@res.com',
-    };
+    // const data = {
+    //   user: {
+    //     email: 'res@res.com',
+    //   },
+    // };
 
     return {
       user: data ? data.user : {}, // will be passed to the page component as props
     };
   } catch (err) {
-    console.log('erorrr', err.response);
-    // console.log(err.response.data.error.statusCode === 401);
-    // if (err.response.data.error.statusCode === 401) {
-    //   console.log('yess');
+    console.log('erorrr', err.response.data.error.statusCode === 401, !ctx.req);
 
-    //   redirectPages(ctx, err);
-    // }
+    if (err.response.data.error.statusCode === 401) {
+      redirectPages(ctx, err);
+    }
   }
 };
 

@@ -10,6 +10,7 @@ import {
   redirectPage,
   getServerSideToken,
   getClientSideToken,
+  redirectPages,
 } from '../../../functions/fauthContoller';
 
 class updatepassword extends React.Component {
@@ -159,7 +160,9 @@ updatepassword.getInitialProps = async (ctx) => {
       user: {}, // will be passed to the page component as props
     };
   } catch (err) {
-    console.log('elseee');
+    if (err.response.data.error.statusCode === 401) {
+      redirectPages(ctx, err);
+    }
   }
 };
 
