@@ -20,6 +20,9 @@ const EmptyCart = ({ user }) => {
               <a className="cart__login" href="/">
                 add
               </a>
+              <a className="cart__login" href="/login">
+                login
+              </a>
               items in your cart
             </p>
           </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import Layout from '../components/Layout';
+import URLbaseAPI from '../functions/URLbaseAPI';
 import cookieCutter from 'cookie-cutter';
 
 import {
-  URLbaseAPI,
   getFrontUser,
   getClientSideToken,
   getServerSideToken,
@@ -19,6 +19,7 @@ class cart extends React.Component {
   };
 
   async componentDidMount() {
+    console.log();
     try {
       const token = cookieCutter.get('token');
       console.log('token', token);
@@ -29,7 +30,7 @@ class cart extends React.Component {
         this.setState({ cart });
       }
 
-      const data = await getFrontUser(token);
+      const data = await getFrontUser();
       if (data) {
         this.setState({ user: data.user });
       }
@@ -46,11 +47,47 @@ class cart extends React.Component {
         {cart.totalProductsCount >= 1 ? (
           <CartWithItem />
         ) : (
-          <EmptyCart user={user} />
+          <EmptyCart user={this.props.user} />
         )}
       </Layout>
     );
   }
 }
+
+cart.getInitialProps = async (ctx) => {
+  try {
+    const { req, res } = ctx;
+    let config;
+
+    if (req) {
+      config = {
+        headers: {
+          Cookie: req ? req.cookies.token : '',
+        },
+      };
+    }
+    const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+
+    console.log(data, 'data');
+
+    if (!data) {
+      return {
+        user: {},
+      };
+    }
+
+    return {
+      user: data ? data.user : {}, // will be passed to the page component as props
+    };
+  } catch (err) {
+    console.log('erorrr', err.response);
+    // console.log(err.response.data.error.statusCode === 401);
+    // if (err.response.data.error.statusCode === 401) {
+    //   console.log('yess');
+
+    //   redirectPages(ctx, err);
+    // }
+  }
+};
 
 export default cart;

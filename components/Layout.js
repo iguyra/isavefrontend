@@ -1,10 +1,10 @@
-import Heading from "./Heading";
-import AppProvider from "../context/appContext";
+import Heading from './Heading';
+import AppProvider from '../context/appContext';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, user }) => {
   return (
     <AppProvider>
-      <Heading />
+      <Heading user={user} />
       {children}
     </AppProvider>
   );

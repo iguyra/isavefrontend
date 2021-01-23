@@ -15,21 +15,36 @@ export function getUser(req, res) {
   });
 }
 
-export async function getFrontUser(token) {
+// export async function getFrontUser(token) {
+//   try {
+//     const config = {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     };
+//     const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+
+//     return data;
+//   } catch (err) {
+//     console.log(err.response.data.error.statusCode === 401);
+//     if (err.response.data.error.statusCode === 401) {
+//       Router.push('/login');
+//     }
+//   }
+// }
+
+export async function getFrontUser(req) {
+  // const config = {
+  //   headers: {
+  //     cookie: req.cookies.token,
+  //   },
+  // };
   try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+    const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`);
 
     return data;
   } catch (err) {
-    console.log(err.response.data.error.statusCode === 401);
-    if (err.response.data.error.statusCode === 401) {
-      Router.push('/login');
-    }
+    console.log(err.response);
   }
 }
 
@@ -42,7 +57,9 @@ export function getClientSideToken() {
 }
 export function getServerSideToken(req) {
   if (typeof window === 'undefined') {
+    console.log(token, 'token');
     const token = req ? req.cookies.token : '';
+
     return token;
   }
   return '';

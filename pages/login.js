@@ -45,7 +45,7 @@ class login extends React.Component {
         password,
       });
       // localStorage.setItem('token', data.token);
-      cookieCutter.set('token', data.token);
+      // cookieCutter.set('token', data.token);
 
       Router.push('/');
       this.setState({ data: data });
@@ -130,20 +130,20 @@ class login extends React.Component {
 }
 login.getInitialProps = async (ctx) => {
   try {
-    const { req, res } = ctx;
+    // const { req, res } = ctx;
 
-    let token = req ? getServerSideToken(req) : getClientSideToken();
+    // let token = req ? getServerSideToken(req) : getClientSideToken();
 
-    if (token) {
-      if (typeof window === 'object') {
-        return Router.push('/');
-      } else {
-        if (req) {
-          res.writeHead(301, { location: '/' });
-          return res.end();
-        }
-      }
-    }
+    // if (token) {
+    //   if (typeof window === 'object') {
+    //     return Router.push('/');
+    //   } else {
+    //     if (req) {
+    //       res.writeHead(301, { location: '/' });
+    //       return res.end();
+    //     }
+    //   }
+    // }
 
     return {
       user: {}, // will be passed to the page component as props

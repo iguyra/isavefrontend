@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import cookieCutter from 'cookie-cutter';
 
-import { getFrontUser } from '../functions/fauthContoller';
+import { getFrontUser, getFrontUserr } from '../functions/fauthContoller';
 import CartIcon from './cart/CartIcon';
 
 class Heading extends React.Component {
@@ -15,9 +15,12 @@ class Heading extends React.Component {
   };
 
   async componentDidMount() {
+    // console.log(this.props);
+    const { user } = this.props;
+
     try {
       const token = cookieCutter.get('token');
-      const data = await getFrontUser(token);
+      const data = await getFrontUser();
 
       if (data) {
         this.setState({ user: data.user });
@@ -42,6 +45,7 @@ class Heading extends React.Component {
 
   render() {
     const { user, headerActive, menuActive, navigation } = this.state;
+    // const { user } = this.props;
     return (
       <section className={headerActive ? 'header active' : 'header'}>
         <div className="header__details">

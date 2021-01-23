@@ -11,15 +11,20 @@ import {
   getServerSideToken,
   getClientSideToken,
   redirectPages,
+  getFrontUser,
 } from '../../functions/fauthContoller';
 
 function user(props) {
   let { user } = props;
 
-  const logUserOut = () => {
+  const logUserOut = async () => {
     cookieCutter.set('token', '', { expires: new Date(0) });
+    const { data } = await axios.post(`${URLbaseAPI}/api/users/logout`);
+    console.log(data);
     Router.push('/');
   };
+
+  console.log('yess');
 
   return (
     <Layout>
@@ -101,39 +106,52 @@ function user(props) {
 user.getInitialProps = async (ctx) => {
   try {
     const { req, res } = ctx;
+    let config;
 
-    let token = req ? getServerSideToken(req) : getClientSideToken();
-
-    if (!token) {
-      if (typeof window === 'object') {
-        return Router.push('/login');
-      } else {
-        if (req) {
-          res.writeHead(301, { location: '/login' });
-          return res.end();
-        }
-      }
+    if (req) {
+      console.log('yeess');
+      config = {
+        headers: {
+          // Authorization: `Bearer ${token}`,
+          Cookie: req ? `token=${req.cookies.token}` : '',
+        },
+      };
     }
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
 
     const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+
+    console.log(data);
+
+    // data = await getFrontUser();
+
+    console.log('dataa', !process.browser);
+
+    const dataa = {
+      email: 'res@res.com',
+    };
 
     return {
       user: data ? data.user : {}, // will be passed to the page component as props
     };
   } catch (err) {
-    console.log('erorrr');
-    console.log(err.response.data.error.statusCode === 401);
-    if (err.response.data.error.statusCode === 401) {
-      console.log('yess');
+    console.log('erorrr', err.response);
+    // console.log(err.response.data.error.statusCode === 401);
+    // if (err.response.data.error.statusCode === 401) {
+    //   console.log('yess');
 
-      redirectPages(ctx, err);
-    }
+    //   redirectPages(ctx, err);
+    // }
   }
 };
 
 export default user;
+// if (!token) {
+//   if (typeof window === 'object') {
+//     return Router.push('/login');
+//   } else {
+//     if (req) {
+//       res.writeHead(301, { location: '/login' });
+//       return res.end();
+//     }
+//   }
+// }

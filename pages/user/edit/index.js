@@ -157,25 +157,34 @@ edit.getInitialProps = async (ctx) => {
   try {
     const { req, res } = ctx;
 
-    let token = req ? getServerSideToken(req) : getClientSideToken();
+    // let token = req ? getServerSideToken(req) : getClientSideToken();
 
-    if (!token) {
-      if (typeof window === 'object') {
-        return Router.push('/login');
-      } else {
-        if (req) {
-          res.writeHead(301, { location: '/login' });
-          return res.end();
-        }
-      }
+    // if (!token) {
+    //   if (typeof window === 'object') {
+    //     return Router.push('/login');
+    //   } else {
+    //     if (req) {
+    //       res.writeHead(301, { location: '/login' });
+    //       return res.end();
+    //     }
+    //   }
+    // }
+
+    let config;
+
+    if (req) {
+      config = {
+        headers: {
+          // Authorization: `Bearer ${token}`,
+          Cookie: req ? `token=${req.cookies.token}` : '',
+        },
+      };
     }
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+
+    // let token = req ? req.cookies.token : getClientSideToken();
 
     const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
+
     console.log(data, 'data');
     return {
       userr: data.user, // will be passed to the page component as props
