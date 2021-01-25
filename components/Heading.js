@@ -97,7 +97,7 @@ class Heading extends React.Component {
 
         <section
           onClick={this.openMenu}
-          className={menuActive ? 'navigation' : 'navigation off'}
+          className={menuActive ? 'navigation' : 'navigation on'}
           id="navigation"
         >
           <div className="navigation__container">

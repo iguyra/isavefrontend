@@ -1,5 +1,6 @@
 .section--product {
   margin-top: 3rem;
+  margin-bottom: 5rem;
 }
 
 .product {
@@ -17,6 +18,9 @@
     box-shadow: 0 0.2rem 0.3rem $color-grey-light;
     margin: 0.5rem;
     position: relative;
+    border: 1px solid $color-grey-light;
+    padding: 2px;
+    padding-bottom: 0.5rem;
     &:hover {
       box-shadow: 0 0.2rem 0.3rem $color-primary;
     }
@@ -41,7 +45,7 @@
     }
 
     &:empty:after {
-      content: "";
+      content: '';
       height: 6px;
       width: 100%;
       position: absolute;
@@ -73,9 +77,10 @@
 
   &__price {
     font-size: 1.6rem;
-    background-color: $color-grey-light-1;
+    // background-color: $color-grey-light-1;
     font-weight: 500;
     margin-bottom: 1rem;
+    font-weight: 600;
   }
 
   &__name {
@@ -83,14 +88,14 @@
     margin-bottom: 1rem;
     text-transform: uppercase;
     font-weight: 400;
-    letter-spacing: 2px;
+    letter-spacing: 0.5px;
   }
 
   &__phrase {
     font-size: 2.2rem;
     width: 90%;
     margin: 1rem auto;
-    background-color: $color-grey-light;
+    // background-color: $color-grey-light;
     padding: 0.5rem;
     font-weight: lighter;
     font-style: italic;

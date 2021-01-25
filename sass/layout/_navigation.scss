@@ -4,8 +4,8 @@
   top: 6rem;
   height: 100vh;
   width: 100%;
-  transition: all 0.25s;
-  opacity: 1;
+  // transform: translateX(-100%);
+  transition: all 0.35s;
 
   &__container {
     background-color: $color-white;
@@ -79,8 +79,10 @@
   }
 }
 
-.off {
+.navigation.on {
   transition: all 0.35s;
-  transform: translateX(-120vh);
-  opacity: 0;
+  transform: translateX(-100%);
+  // display: block;
+
+  // opacity: 0;
 }
