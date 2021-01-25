@@ -17,6 +17,7 @@ class Heading extends React.Component {
   async componentDidMount() {
     // console.log(this.props);
     const { user } = this.props;
+    window.addEventListener('scroll', this.handleBackground, true);
 
     try {
       const token = cookieCutter.get('token');
@@ -25,7 +26,6 @@ class Heading extends React.Component {
       if (data) {
         this.setState({ user: data.user });
       }
-      window.addEventListener('scroll', this.handleBackground, true);
     } catch (error) {
       console.log('errorrr', error);
     }
