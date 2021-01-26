@@ -21,8 +21,8 @@ class cart extends React.Component {
   async componentDidMount() {
     console.log();
     try {
-      const token = cookieCutter.get('token');
-      console.log('token', token);
+      // const token = cookieCutter.get('token');
+      // console.log('token', token);
 
       const cart = JSON.parse(localStorage.getItem('isavecart'));
 

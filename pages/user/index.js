@@ -94,11 +94,11 @@ function user(props) {
         </ul>
       </section>
       <div className="logout">
-        <Link href="/">
+        <a href="/">
           <a onClick={logUserOut} className="logout__word">
             logout
           </a>
-        </Link>
+        </a>
       </div>
     </Layout>
   );

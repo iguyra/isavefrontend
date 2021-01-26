@@ -39,7 +39,7 @@ export default class Arrivals extends React.Component {
           <div className="arrival__list">
             {arrival.map((arrival) => {
               return (
-                <div className="arrival__item">
+                <div key={arrival._id} className="arrival__item">
                   <div className="arrival__imgcontainer">
                     <Link
                       key={arrival.name}
