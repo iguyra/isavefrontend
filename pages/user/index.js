@@ -19,7 +19,7 @@ function user(props) {
   let { user } = props;
 
   const logUserOut = async () => {
-    cookieCutter.set('token', '', { expires: new Date(0) });
+    cookieCutter.set('isLoggedIn', '', { expires: new Date(0) });
     const { data } = await axios.post(`${URLbaseAPI}/api/users/logout`);
     console.log(data);
     Router.push('/');
@@ -104,32 +104,35 @@ function user(props) {
   );
 }
 
-user.getInitialProps = async (ctx) => {
+export async function getServerSideProps(ctx) {
   try {
     const { req, res } = ctx;
     let config;
+    let token = ctx.req.cookies.token;
 
     if (req) {
       console.log('yeess');
       config = {
         headers: {
           // Authorization: `Bearer ${token}`,
-          Cookie: req ? `token=${req.cookies.token}` : '',
+          Cookie: req ? `token=${token}` : '',
         },
       };
     }
 
     const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
-
+    console.log(data, ctx.req.cookies.token);
     // const data = {
     //   user: {
     //     email: 'res@res.com',
     //   },
     // };
-
     return {
-      user: data ? data.user : {}, // will be passed to the page component as props
+      props: { user: data ? data.user : {} }, // will be passed to the page component as props
     };
+    // return {
+    //   user: data ? data.user : {}, // will be passed to the page component as props
+    // };
   } catch (err) {
     console.log('erorrr', err.response.data.error.statusCode === 401, !ctx.req);
 
@@ -137,7 +140,7 @@ user.getInitialProps = async (ctx) => {
       redirectPages(ctx, err);
     }
   }
-};
+}
 
 export default user;
 // if (!token) {

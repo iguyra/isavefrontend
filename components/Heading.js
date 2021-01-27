@@ -12,6 +12,7 @@ class Heading extends React.Component {
     user: {},
     headerActive: false,
     menuActive: false,
+    isLoggedIn: false,
   };
 
   async componentDidMount() {
@@ -20,11 +21,12 @@ class Heading extends React.Component {
     window.addEventListener('scroll', this.handleBackground, true);
 
     try {
-      const token = cookieCutter.get('token');
-      const data = await getFrontUser();
-
-      if (data) {
-        this.setState({ user: data.user });
+      const token = cookieCutter.get('isLoggedIn');
+      // const data = await getFrontUser();
+      console.log(token);
+      if (token) {
+        // this.setState({ user: data.user });
+        this.setState({ isLoggedIn: true });
       }
     } catch (error) {
       console.log('errorrr', error);
@@ -44,8 +46,14 @@ class Heading extends React.Component {
   };
 
   render() {
-    const { user, headerActive, menuActive, navigation } = this.state;
-    // const { user } = this.props;
+    const {
+      user,
+      isLoggedIn,
+      headerActive,
+      menuActive,
+      navigation,
+    } = this.state;
+    console.log(isLoggedIn);
     return (
       <section className={headerActive ? 'header active' : 'header'}>
         <div className="header__details">
@@ -76,7 +84,7 @@ class Heading extends React.Component {
 
         <div className="header__profileDetails">
           <div className="header__profile">
-            {user.email ? (
+            {isLoggedIn ? (
               <Link href="/user">
                 <a>
                   <i className="fas activeIcon fa-user" id="user"></i>

@@ -45,7 +45,7 @@ class login extends React.Component {
         password,
       });
       // localStorage.setItem('token', data.token);
-      // cookieCutter.set('token', data.token);
+      cookieCutter.set('isLoggedIn', data.success);
 
       Router.push('/');
       this.setState({ data: data });

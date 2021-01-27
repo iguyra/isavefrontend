@@ -54,7 +54,7 @@ class cart extends React.Component {
   }
 }
 
-cart.getInitialProps = async (ctx) => {
+export async function getServerSideProps(ctx) {
   try {
     const { req, res } = ctx;
     let config;
@@ -77,7 +77,7 @@ cart.getInitialProps = async (ctx) => {
     }
 
     return {
-      user: data ? data.user : {}, // will be passed to the page component as props
+      props: { user: data ? data.user : {} }, // will be passed to the page component as props
     };
   } catch (err) {
     console.log('erorrr', err.response);
@@ -88,6 +88,6 @@ cart.getInitialProps = async (ctx) => {
     //   redirectPages(ctx, err);
     // }
   }
-};
+}
 
 export default cart;
