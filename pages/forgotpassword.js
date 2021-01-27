@@ -102,25 +102,26 @@ class forgotpassword extends React.Component {
   }
 }
 
-forgotpassword.getInitialProps = async (ctx) => {
+export async function getServerSideProps(ctx) {
   try {
     const { req, res } = ctx;
 
-    let token = req ? getServerSideToken(req) : getClientSideToken();
+    let token = req.cookies.token;
 
-    if (token) {
-      if (typeof window === 'object') {
-        return Router.push('/');
-      } else {
-        if (req) {
-          res.writeHead(301, { location: '/' });
-          return res.end();
-        }
-      }
-    }
+    // if (token) {
+    //   if (typeof window === 'object') {
+    //     return Router.push('/');
+    //   } else {
+    //     if (req) {
+    //       res.writeHead(301, { location: '/' });
+    //       return res.end();
+    //     }
+    //   }
+    // }
+    console.log('token', token);
 
     return {
-      user: {}, // will be passed to the page component as props
+      props: {}, // will be passed to the page component as props
     };
   } catch (err) {
     if (err) {
@@ -130,6 +131,6 @@ forgotpassword.getInitialProps = async (ctx) => {
       }
     }
   }
-};
+}
 
 export default forgotpassword;

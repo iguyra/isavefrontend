@@ -62,7 +62,7 @@ export async function getServerSideProps(ctx) {
     if (req) {
       config = {
         headers: {
-          Cookie: req ? req.cookies.token : '',
+          Cookie: req ? `token=${req.cookies.token}` : '',
         },
       };
     }

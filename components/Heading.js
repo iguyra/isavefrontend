@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import cookieCutter from 'cookie-cutter';
-
+import axios from 'axios';
 import { getFrontUser, getFrontUserr } from '../functions/fauthContoller';
+import URLbaseAPI from '../functions/URLbaseAPI';
 import CartIcon from './cart/CartIcon';
 
 class Heading extends React.Component {
@@ -23,13 +24,15 @@ class Heading extends React.Component {
     try {
       const token = cookieCutter.get('isLoggedIn');
       // const data = await getFrontUser();
-      console.log(token);
-      if (token) {
-        // this.setState({ user: data.user });
-        this.setState({ isLoggedIn: true });
-      }
+      const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`);
+
+      console.log(token, data);
+      // if (token && data) {
+      this.setState({ user: data.user });
+      //   this.setState({ isLoggedIn: data.user.email ? true : false });
+      // }
     } catch (error) {
-      console.log('errorrr', error);
+      console.log('errorrr', error.response);
     }
   }
 
@@ -84,7 +87,7 @@ class Heading extends React.Component {
 
         <div className="header__profileDetails">
           <div className="header__profile">
-            {isLoggedIn ? (
+            {user.email ? (
               <Link href="/user">
                 <a>
                   <i className="fas activeIcon fa-user" id="user"></i>

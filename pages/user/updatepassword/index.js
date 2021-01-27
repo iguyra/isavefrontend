@@ -137,34 +137,22 @@ class updatepassword extends React.Component {
   }
 }
 
-updatepassword.getInitialProps = async (ctx) => {
+export async function getServerSideProps(ctx) {
   try {
     const { req, res } = ctx;
-    // let token = req ? getServerSideToken(req) : getClientSideToken();
-
-    let config;
-
-    if (req) {
-      config = {
-        headers: {
-          Cookie: req ? `token=${req.cookies.token}` : '',
-        },
-      };
-    }
-
-    const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
-
-    console.log(data);
+    let token = req.cookies.token;
+    console.log(token);
 
     return {
-      user: {}, // will be passed to the page component as props
+      props: {}, // will be passed to the page component as props
     };
   } catch (err) {
-    if (err.response.data.error.statusCode === 401) {
-      redirectPages(ctx, err);
-    }
+    console.log(err.response);
+    // if (err.response.data.error.statusCode === 401) {
+    //   redirectPages(ctx, err);
+    // }
   }
-};
+}
 
 export default updatepassword;
 

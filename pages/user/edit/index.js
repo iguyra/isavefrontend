@@ -154,7 +154,7 @@ const edit = ({ userr }) => {
   );
 };
 
-edit.getInitialProps = async (ctx) => {
+export async function getServerSideProps(ctx) {
   try {
     const { req, res } = ctx;
     let config;
@@ -172,15 +172,23 @@ edit.getInitialProps = async (ctx) => {
 
     const { data } = await axios.get(`${URLbaseAPI}/api/users/cart`, config);
 
+    let dataa = {
+      user: {
+        firstname: 'res',
+        lastname: 'lastname',
+        phonenumber: '09',
+      },
+    };
+
     console.log(data, 'data');
     return {
-      userr: data.user, // will be passed to the page component as props
+      props: { userr: data ? data.user : {} }, // will be passed to the page component as props
     };
   } catch (err) {
     if (err.response.data.error.statusCode === 401) {
       redirectPages(ctx, err);
     }
   }
-};
+}
 
 export default edit;
